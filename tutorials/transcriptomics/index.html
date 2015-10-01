@@ -284,7 +284,7 @@ the remote computer.</p>
 
 <p>this gives you a list of the files already in your directory.  We will go through the contents of these files as we proceed through the workshop.</p>
 <h3 id="test-data-set">Test data set</h3>
-<p>This workshop is using real 100 bp single end Illumina HiSeq data for <em>Col-0</em> arabidopsis, but reads are limited to chromosome 1 of the genome to make the data files and computational time more manageable.  The data file chr1.fastq has over 2 million reads.  Typical read counts for a basic experiment is 15-20 million reads.</p>
+<p>This workshop is using real 100 bp single end Illumina HiSeq data for <em>Col-0</em> arabidopsis, but reads are limited to chromosome 1 of the genome to make the data files and computational time more manageable.  The data file <em>chr1.fastq</em> has over 2 million reads.  Typical read count for a basic experiment is 15-20 million reads per sample.</p>
 <h3 id="fastq-file-format">Fastq file format</h3>
 <p>line1: @sequence_name <br/>
 line2: sequence string<br/>
@@ -309,7 +309,7 @@ BB<00;B;7BFFFFBFB;FFBBB;BBB;;BBFBBFBFBBFFFFFFBBBFFFFIIIIIIIFIIIIIIIIFF
 
 <p>Type <em>q</em> to exit the screen</p>
 <h2 id="2-data-qc">2. Data QC</h2>
-<p>The typical first step of an NGS project is to analyse the quality of the data.  The easiest way to do this is to uses the <em>fastqc</em> program</p>
+<p>The typical first step of an NGS project is to analyse the quality of the data.  The easiest way to do this is to use the <em>fastqc</em> program</p>
 <p>The instructions to the computer are in the <em>run_fastqc</em> program that you copied earlier into your directory.  You can see the content of the <em>run_fastqc</em> file by typing</p>
 <pre><code class="sh">more fastqc
 </code></pre>
@@ -332,7 +332,7 @@ Once you have submitted your job with the <em>sbatch</em> command you can see if
 </code></pre>
 
 <p>You will see a list of files with the most recent at the bottom of the page
-the file that starts with slurm contains the output of your run_fastqc script
+the file that starts with slurm contains the output of your <em>run_fastqc</em> script
 You can see the contents of the slurm file by typing</p>
 <pre><code class="sh">more slurm-*
 </code></pre>
@@ -340,21 +340,21 @@ You can see the contents of the slurm file by typing</p>
 <div class="info"><p><b>Aside</b>: the <em>*</em> character is a wildcard, so the above command will look at all files that starts with slurm.  At the moment we only have one file, but we can type in the full name to get the file of interest.  There is also the auto complete tab function.  Try typing <em>more slurm</em>, then the <em>tab</em> key to get an auto complete of the slurm file.  <b>Note</b>: auto complete does not work if the results are ambiguous</div>
 
 <h3 id="analysing-the-fastqc-output">Analysing the fastqc output:</h3>
-<p>The easiest way to to analyes the output of the fastqc job is to download the chr1_fastqc.zip file and visualise through a web browser.  </p>
+<p>The easiest way to analyse the output of the fastqc job is to download the <em>chr1_fastqc.zip</em> file and visualise through a web browser.  </p>
 <h4 id="macs">Macs</h4>
 <p>From a mac terminal window (not the lims-hpc window) paste the following command:</p>
 <pre><code class="sh">scp -P 6022 trainingXX@lims-hpc-m.latrobe.edu.au:chr1_fastqc.zip ~/Desktop
 </code></pre>
 
 <p><strong>Note</strong>: You will need to replace XX with your training account number and enter the password when prompted.</p>
-<p>On your desktop, double click on the zip file, and then go into the extracted folder and double click on the .html file, and it should open up in your web browser.</p>
+<p>On your desktop, double click on the <em>zip</em> file, and then go into the extracted folder and double click on the <em>.html</em> file, and it should open up in your web browser.</p>
 <h4 id="windows_1">Windows</h4>
 <p>Install winscp and login using the settings below.  Make sure you have your correct training username
 ﻿
 <img src="media/winscp-login.png" /></p>
 <p>You will then be able to drag the unix files (right screen) onto your local computer (left screen)
-The file you need transfer for for this fastqc analysis is <em>chr1_fastqc.zip</em></p>
-<p>Once the file is transferred, right click on the file and select extract.  You can then enter the extracted <em>chr1_fastqc</em> directory and open the <em>html</em> file.</p>
+The file you need transfer for this fastqc analysis is <em>chr1_fastqc.zip</em></p>
+<p>Once the file is transferred, right click on the file and select <em>extract</em>.  You can then enter the extracted <em>chr1_fastqc</em> directory and open the <em>html</em> file.</p>
 <h3 id="analysis">Analysis</h3>
 <p>Once the html file is opened in your web browser, the things to look at are:<br/>
 Quality:<br/>
@@ -387,16 +387,17 @@ module load samtools-gcc/1.2
 samtools view accepted_hits.bam | more
 </code></pre>
 
-<p>Type <em>q</em> to get out of the <em>more</em> session
+<p>Type <em>q</em> to get out of the <em>more</em> session.<br/>
 We won’t worry about all the details of the sam file at this stage as we will look at some of the more informative fields later today.</p>
 <p>Look at the file <em>align_summary.txt</em> using the <em>more</em> command.  As we are only mapping chr1 reads this is not particularly interesting, but can be informative for full data sets as differing mapping rates across samples can alert you to library problems or other issues.</p>
 <h2 id="4-visualising-mapped-data">4. Visualising mapped data</h2>
-<p>This section uses the  Interactive Genome Viewer (IGV) will be used to look at reads that map to the genome.</p>
+<p>This section uses the  Interactive Genome Viewer (IGV) to look at reads that map to the genome.</p>
 <h3 id="installing-igv-on-your-computer">Installing IGV on your computer:</h3>
 <p>Before we can visualise the data, the program needs to be installed locally.</p>
-<p>Go to the <a href="http://www.broadinstitute.org/software/igv/">IGV webpage</a><br>
+<p>Go to the <a href="http://www.broadinstitute.org/software/igv/" target=_blank >[IGV webpage]</a><br>
 You will need to register before you can download the application.  </p>
 <p>Windows users will need to run the program by opening <em>IGV</em> the <em>windows batch</em> file</p>
+<h3 id="file-transfers">File transfers</h3>
 <p>Once this <em>run_tophat</em> script has finished, we can copy the the important files to a local computer and visualise the mapped data interactively.</p>
 <h4 id="mac">Mac:</h4>
 <pre><code class="sh">scp -P 6022 trainingXX@lims-hpc-m.latrobe.edu.au:tophat/accepted_hits.bam* ~/Desktop
@@ -417,7 +418,11 @@ You will need to register before you can download the application.  </p>
 This is a conceptually simple process, where if a read unambiguously maps to a gene, then that gene has one count.  </p>
 <p><strong>Note</strong>: alternative isoforms are ignored for most gene count experiments and counts are for all isoforms combined.</p>
 <p>Documentation for <em>htseq-count</em> is found here:</p>
-<p><a href="http://www-huber.embl.de/users/anders/HTSeq/doc/count.html">http://www-huber.embl.de/users/anders/HTSeq/doc/count.html</a></p>
+<p><a href="http://www-huber.embl.de/users/anders/HTSeq/doc/count.html" target=_blank >http://www-huber.embl.de/users/anders/HTSeq/doc/count.html</a></p>
+<p>First submit the slurm script</p>
+<pre><code class="sh">sbatch run_htseq
+</code></pre>
+
 <p>The final output of htseq-count a table list of genes and their counts and is called <em>gene_counts.txt</em> and can be found in the <em>tophat</em> directory.  Use the <em>more</em> command to look at this file.</p>
 <p>Note that we are only mapping to genes on chromosome 1 so many genes have no reads.</p>
 <p>You can sort this file in terms of gene counts by using the command:</p>
@@ -425,10 +430,10 @@ This is a conceptually simple process, where if a read unambiguously maps to a g
 </code></pre>
 
 <h3 id="further-gene-count-analysis">Further Gene count analysis</h3>
-<p>Go back to IGV and look at some genes with:</p>
-<p>High counts
-Middle level counts
-Low counts</p>
+<p>Go back to IGV and look at some genes with:<br/>
+1. High counts<br/>
+2. Middle level counts<br/>
+3. Low counts<br/></p>
 <p>record a few AT numbers for later in the workshop</p>
 <h5 id="reads-not-counted">Reads not counted</h5>
 <p>When a read is mapped to more than one position in the genome, then this read is not counted by <em>htseq-count</em>.  In <em>IGV</em>, go to <em>AT1G11270</em> to see some reads that are not counted.  The white reads have a zero mapping quality.</p>
@@ -436,7 +441,7 @@ Low counts</p>
 
 <p>Now go to <em>AT1G11300</em> and decide on whether you believe the apparent splicing in that gene.</p>
 <p>Visualise gene <em>AT1G64940</em>.  How many reads should be counted by <em>htseq-count</em> for these genes?
-Using the grep command below  (grep just extracts the line of the file that matches the string (AT number in this case)</p>
+Using the grep command below  (grep just extracts the line of the file that matches the string, AT number in this case)</p>
 <pre><code class="sh">grep AT1G64930 gene_counts.txt
 grep AT1G64940 gene_counts.txt
 </code></pre>
@@ -451,7 +456,7 @@ no_feature   <br/>
 ambiguous    <br/>
 alignment_not_unique     <br/></p>
 <h2 id="6-differential-gene-expression">6. Differential Gene Expression</h2>
-<p>Rather that mapping six whole transcriptomes and combining the results, we will use a file that has already been generated called <em>WT_MUT_counts.tsv</em>.  This comes from a data set being worked on in the Whelan lab, where a LETM gene has been knocked out and plants are put under a water stress environment.  Visualise this data table with the <em>more</em> command. </p>
+<p>Rather that mapping six whole transcriptomes and combining the results in the workshop, we will use a file that has already been generated called <em>WT_MUT_counts.tsv</em>.  This comes from a data set being worked on in the Whelan lab, where a LETM gene has been knocked out and plants are put under a drought stress environment.  Visualise this data table with the <em>more</em> command. </p>
 <p>We can do simple, but statistically valid differential expression analysis using a web server called <em>degust</em></p>
 <p><a href="http://vicbioinformatics.com/degust-training/" target=_blank >[http://vicbioinformatics.com/degust-training/]</a></p>
 <p>You will need to copy <em>WT_MUT_counts.tsv</em> onto your computer and then upload the data into degust.</p>
@@ -460,7 +465,7 @@ alignment_not_unique     <br/></p>
 2. give the dataset a name<br/>
 3. <em>Info columns</em> is set to <em>seqname</em>  <br/>
 4. enter <em>Min Read Count</em> as <em>10</em><br/>
-5. Group replicates using the <em>Add Condition</em> button<br/>
+5. Group replicates using the <em>Add condition</em> button<br/>
 6. Press <em>Save Changes</em> where you are done.<br/></p>
 <p>I will demonstrate the options of degust and help you interpret the results.</p>
 <p><img src="media/config.png" /></p>
@@ -471,7 +476,7 @@ alignment_not_unique     <br/></p>
 <p>There are two other tabs which relate to differential expression analysis.  <em>Expression - parallel coordinates</em>, and <em>Expression - MA plot</em>.  Parallel expression give you a heat map representation, and the MA plot is a measure of differential expression in combination with absolute expression.</p>
 <p>You will need to limit the genes you are viewing. <em>FDR cut off</em> (false discovery rate) is the main filter, but you can also choose to define an <em>absolute log FC</em> filter.  A value of 1 means that you require a two fold difference in expression (see below for explanation of log2 FC).</p>
 <p><img src="media/options.png" /></p>
-<div class="info"><p><b>Aside</b>: how to express expression changes : use log2 values<br/>
+<div class="info"><p><b>Aside</b>: how to define expression changes : use log2 values<br/>
 If a fold change in expression (counts)  is 2, then log2=1<br/>
 If a fold change in expression is 4, then log2=2<br/>
 If a fold change in expression is 8, then log2=3<br/>
@@ -482,7 +487,7 @@ Ratios of expressions (counts) don’t work as two fold reduction is 0.5, <br/>
 4 fold reduction is 0.25<br/>
 8 fold reduction is 0.125</div>
 
-<p>You can also change the analysis method from <em>Voom/Limma</em> to <em>edgeR</em>.</p>
+<p>Within degust, you can also change the analysis method from <em>Voom/Limma</em> to <em>edgeR</em>.  All analysis is done by the degust server.</p>
 <div class="info"><p><b>Aside</b>: Limma and edgeR info<br/>
 <b>Voom/Limma</b>: Linear Models for Microarray and RNA-Seq Data<br/>
 Voom: http://genomebiology.com/2014/15/2/R29, precision weights unlock linear model analysis tools for RNA-seq read counts<br/>
@@ -492,8 +497,8 @@ Voom: http://genomebiology.com/2014/15/2/R29, precision weights unlock linear mo
 <h2 id="day-two">Day two</h2>
 <h2 id="7-transcriptome-assembly">7. Transcriptome Assembly</h2>
 <p>When a reference genome is not available, then assembling the reads using programs such as <em>trinity</em> is the typical route of analysis.<br/>
-http://trinityrnaseq.github.io</p>
-<p>This workshop will take the same raw fastq data as was mapped to the genome and assemble it, then analyse some of the transcripts. For the sake of speed, only the first 250 thousand reads are assembled.  These correspond to approximately the first 2.5MB of chromosome 1.</p>
+ <a href="http://trinityrnaseq.github.io/" target=_blank >[http://trinityrnaseq.github.io/]</a></p>
+<p>This workshop will take the same raw <em>fastq</em> data as was mapped to the genome and assemble it, then analyse some of the transcripts. For the sake of speed, only the first 250 thousand reads are assembled.  These correspond to approximately the first 2.5MB of chromosome 1.</p>
 <p>The first step is to make a file with these reads using the <em>head</em> command.  We take the first million lines as there are four lines per sequence.<br> </p>
 <pre><code class="sh">head -1000000 chr1.fastq&gt; chr1_250K.fastq
 </code></pre>
@@ -502,7 +507,7 @@ http://trinityrnaseq.github.io</p>
 <pre><code class="sh">sbatch run_trinity
 </code></pre>
 
-<p>The final output file is called <em>Trinity.fasta</em> and is in the <em>trinity</em> directory
+<p>The final output file is called <em>Trinity.fasta</em> and is in the <em>trinity</em> directory.<br/>
 The format of the output fasta file is:
 <em>c203_g1_i1</em></p>
 <p><em>c</em> represents the contig number - loosely represents a gene<br/>
@@ -510,7 +515,7 @@ The format of the output fasta file is:
 <em>i</em> represents the isoform or the sequence variant number</p>
 <h2 id="8-visualising-transcripts">8. Visualising transcripts</h2>
 <p>The <em>bandage</em> visualisation tool can be downloaded from 
-<a href="https://github.com/rrwick/Bandage/releases">https://github.com/rrwick/Bandage/releases</a>
+ <a href="https://github.com/rrwick/Bandage/releases/" target=_blank >[https://github.com/rrwick/Bandage/releases]</a>
 select the version that you require and install</p>
 <p>The <em>Trinity.fasta</em> file needs to be transferred onto your computer:</p>
 <h4 id="mac_1">mac</h4>
@@ -535,7 +540,7 @@ select the version that you require and install</p>
 <li>Alternative splicings<br/></li>
 <li>Fragmented assemblies<br/></li>
 <li>No hits<br/></li>
-<li>Anything else??<br/></li>
+<li>Anything else interesting<br/></li>
 </ol>
 <p>Go back to IGV, and search with the AT number and see how the reads relate to the blast results, comparing genes of first four categories above.  You can also visualise some of these alternatively spliced trinity transcripts in bandage.  <br/>
 Try visualising <em>AT1G02080</em> and the trinity assembly that matches this protein. See example below to see how to search for this.<br/>
@@ -548,7 +553,7 @@ Type the following command to see the blast hits to this gene.</p>
 /AT1G01030
 </code></pre>
 
-<p>If you prefer, you can transfer this file onto your local computer and search it using your favorite text editor.</p>
+<p>If you prefer, you can transfer this <em>Trinity_blast.txt</em>  file onto your local computer and search it using your favorite text editor.</p>
 <div class="info"><p><b>Assembly Note</b>: When transcriptomes are assembled, all the data from all the conditions are usually combined to get a standard reference and minimise gene fragmentation for the low coverage genes.  All reads are then mapped back onto the transcriptome for counting and differential expression analysis</div>
 
 <div class="info"><p><b>Aside</b>: Where did the blast database come from?<br/>
