@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+	<title>RNA Seq Basic - LSCC Documentation</title>
+
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link href="../../../includes/media/mdx_showable.css" rel="stylesheet">
+        <link href="../../../includes/media/mdx_showable_user.css" rel="stylesheet">
+        <link href="../../../includes/media/slides.css" rel="stylesheet">
+        <link href="../../../includes/media/tute.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">LSCC Documentation</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../">Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../ngs_overview/NGS_Overview/">NGS Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../using_git/Using_Git/">Using Git and Github for revision control</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../var_detect_advanced/var_detect_advanced_background/">Variant Detection Advanced</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">RNA Seq Basic</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../rna_seq_exp_design/rna_seq_experimental_design/">RNA Seq Experimental Design</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../hpc/">Introduction to HPC</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../unix/">Introduction to Unix</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../python_overview/python_overview/">Python Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../transcriptomics/">Transcriptomics</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../../var_detect_advanced/var_detect_advanced_background/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../../rna_seq_exp_design/rna_seq_experimental_design/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#background">Background</a></li>
+        
+            <li><a href="#introduction-to-rna-seq">Introduction to RNA-seq</a></li>
+        
+            <li><a href="#the-galaxy-workflow-platform">The Galaxy workflow platform</a></li>
+        
+            <li><a href="#differential-gene-expression-analysis-using-tophat-and-cufflinks">Differential gene expression analysis using Tophat and Cufflinks</a></li>
+        
+            <li><a href="#the-full-tuxedo-protocol">The full Tuxedo Protocol</a></li>
+        
+            <li><a href="#protocols-recommendations">Protocols recommendations</a></li>
+        
+            <li><a href="#limitations-of-the-protocols">Limitations of the protocols</a></li>
+        
+            <li><a href="#references">References</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="background">Background</h1>
+<h2 id="introduction-to-rna-seq">Introduction to RNA-seq</h2>
+<p>RNA-seq as a genomics application is essentially the process of collecting RNA (of any type: mRNA, rRNA, miRNA), converting in some way to DNA, and sequencing on a massively parallel sequencing technology such as Illumina Hiseq. Critically, the number of short reads generated for a particular RNA is assumed to be proportional to the amount of that RNA that was present in the collected sample.</p>
+<p>Differential gene expression studies can exploit RNA-seq to quantitate the amount of mRNA in different samples and statistically test the difference in expression per-gene (generally measured as the normalised number of sequence reads per gene/transcript) between the samples.</p>
+<p>In eukaryotes, differential gene expression analysis is complicated by the possibility of multiple isoforms for any particular gene through alternative splicing and/or multiple transcription start sites</p>
+<h2 id="the-galaxy-workflow-platform">The Galaxy workflow platform</h2>
+<h3 id="what-is-galaxy">What is Galaxy?</h3>
+<p>Galaxy is an online bioinformatics workflow management system. Essentially, you upload your files, create various analysis pipelines and run them, then visualise your results.</p>
+<p>Galaxy is really an interface to the various tools that do the data processing; each of these tools could be run from the command line, outside of Galaxy. Galaxy makes it easier to link up the tools together and visualise the entire analysis pipeline.</p>
+<p>Galaxy uses the concept of 'histories'. Histories are sets of data and workflows that act on that data. The data for this workshop is available in a shared history, which you can import into your own Galaxy account</p>
+<p><a href="http://wiki.g2.bx.psu.edu/">Learn more about Galaxy here</a></p>
+<h4 id="figure-1-the-galaxy-interface">Figure 1: The Galaxy interface</h4>
+<p>Tools on the left, data in the middle, analysis workflow on the right.</p>
+<p><img alt="" src="../media/image04.png" /></p>
+<h2 id="differential-gene-expression-analysis-using-tophat-and-cufflinks">Differential gene expression analysis using Tophat and Cufflinks</h2>
+<p>Two protocols are described in the paper inspiring this tutorial (Trapnell et al 2012):</p>
+<ol>
+<li>
+<p>The <em>Tuxedo protocol</em>: a full analysis protocol covering the assembly and characterisation of the expressed genes from the experimental data, and statistical analysis of gene expression changes in those genes</p>
+</li>
+<li>
+<p>The <em>Alternate protocol</em>: a shorter approach for experiments in which the set of genes to be analysed is already known. Changes in expression of those genes are analysed</p>
+</li>
+</ol>
+<p>Assembling a transcriptome is advised if no well characterised transcriptome exists, but as <em>D. melanogaster</em> is a model organism we have access to well-annotated and comprehensive genomes and transcriptomes from the multitude of previous genomic analyses on <em>D. melanogaster</em>, so the simpler ‘Alternate protocol’ is appropriate. It also has the advantage of being simpler.</p>
+<p>If we were investigating a novel organism then we would first need to characterise the transcriptome by assembling it from the experimental data, as gene expression is only meaningful in the context of a defined transcriptome.</p>
+<h3 id="the-alternate-protocol">The Alternate protocol</h3>
+<p>The overall workflow for this protocol is depicted below[^1]. Briefly, raw reads from each of the sequenced replicates for each experimental condition are aligned against a reference genome; during this process splice sites are identified and reads mapped across introns as required. The mapped reads are then used to derive counts of reads vs genes by cross referencing against a list of known genes (the ‘reference transcriptome’); these read counts are normalised within and between sample sets by a variety of methods and then statistical tests are used to assess the significance of differences between the normalised read counts of sample sets, producing a ranked list of differentially expressed genes.</p>
+<h4 id="figure-2-general-workflow-for-testing-expression-differences-between-two-experimental-conditions">Figure 2: General workflow for testing expression differences between two experimental conditions</h4>
+<p><img alt="" src="../media/image05.png" /></p>
+<h3 id="tophat">Tophat</h3>
+<p>Reads from experimental conditions A and B are mapped to a reference genome with TopHat. TopHat uses the Bowtie aligner as an alignment engine; it breaks up the reads that Bowtie cannot align on its own into smaller pieces called segments.</p>
+<ul>
+<li>TopHat input: Fasta or Fastq files</li>
+<li>TopHat output: BAM file (Compressed SAM file)</li>
+</ul>
+<h3 id="cuffdiff">Cuffdiff</h3>
+<p>The reads and the reference transcriptome are fed to Cuffdiff which calculates expression levels and tests the statistical significance of the observed changes.</p>
+<ul>
+<li>Cuffdiff input: Reference transcriptome as GTF file</li>
+<li>Cuffdiff output:<ul>
+<li>Gene and transcript expression levels as tables of normalised read counts</li>
+<li>Differential analysis testing on:<ul>
+<li>Genes</li>
+<li>Transcripts</li>
+<li>Transcription Start Site (TSS) groups</li>
+<li>Splicing: files reporting on splicing</li>
+<li>Promoter: differentially spliced genes via promoter switching</li>
+<li>CDS: CoDing Sequences</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="the-full-tuxedo-protocol">The full Tuxedo Protocol</h2>
+<h4 id="figure-3-full-tuxedo-protocol-workflow">Figure 3: Full Tuxedo protocol workflow</h4>
+<p><img alt="" src="../media/image01.png" /></p>
+<ol>
+<li>
+<p>Tophat: Reads from different experimental conditions are mapped to a reference genome with TopHat. TopHat uses the Bowtie aligner as an alignment engine. It breaks up the reads that Bowtie cannot align on its own into smaller pieces called segments.</p>
+<ul>
+<li>TopHat input: Fasta or Fastq files</li>
+<li>TopHat output: BAM file (Compressed SAM file)</li>
+</ul>
+</li>
+<li>
+<p>Cufflinks: Resulting alignment files are provided to the Cufflinks program. Cufflinks uses these alignments to generate a transcriptome assembly for each condition. It reports a parsimonious transcriptome assembly of the data, i.e. all transcript fragments or ‘transfrags’ needed to ‘explain’ all the splicing event outcomes in the input data are reported. Cufflinks also quantifies the expression level of each transfrag in the sample to filter out the artificial ones</p>
+<ul>
+<li>Cufflinks input:<ul>
+<li>Mapped reads (SAM or BAM), use accepted_hits.bam from Tophat</li>
+<li>Genome annotation: GTF file</li>
+</ul>
+</li>
+<li>Cufflinks output:<ul>
+<li>assembled transcripts (GTF) including all isoforms with their exon structure and expression levels. (tabular)</li>
+<li>transcript_expression (tabular): table of expression levels for each transcript</li>
+<li>gene_expression (tabular): table of total expression levels for each gene.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Cuffmerge[^2]/Cuffcompare: Cufflinks produces an assembly for each condition/sample. To perform differential expression we need to combine to assemblies into a single assembly. Assemblies can be merged together using the Cuffmerge or Cuffcompare utilities which are included with the Cufflinks package. This will result in the creation of a meta-transcriptome. Both Cuffcompare and Cuffmerge are available on Galaxy.</p>
+<ul>
+<li>Cuffcompare input:<ul>
+<li>Assembled_transcripts for each sample</li>
+<li>Reference Annotation</li>
+</ul>
+</li>
+<li>Cuffcompare output: combined_transcripts.gtf</li>
+</ul>
+</li>
+<li>
+<p>Cuffdiff:The reads and the combined assembly are fed to Cuffdiff which calculates expression levels and tests the statistical significance of the observed changes.</p>
+<ul>
+<li>Cuffdiff input:<ul>
+<li>Reference transcriptome as GTF file</li>
+<li>BAM files of mapped reads from Tophat for all samples</li>
+</ul>
+</li>
+<li>Cuffdiff output:<ul>
+<li>Gene and transcript expression levels as tables of normalised read counts</li>
+<li>Differential analysis testing on:<ul>
+<li>Genes</li>
+<li>Transcripts</li>
+<li>Transcription Start Site (TSS) groups</li>
+<li>Splicing: files reporting on splicing</li>
+<li>Promoter: differentially spliced genes via promoter switching</li>
+<li>CDS: CoDing Sequences</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>CummRbund[^3]: Using an R package called CummRbund, diiferentially expressed genes and transcriptomes can be visually displayed using various expression plots.</p>
+</li>
+</ol>
+<h2 id="protocols-recommendations">Protocols recommendations</h2>
+<ol>
+<li>Create a replicate from each condition to control the batch effects such as variation in culture conditions. With current available kits creating triplicates is feasible and strongly recommended.</li>
+<li>Do paired-end sequencing whenever possible. For example, Cufflinks is much more accurate in the presence of paired-end reads.</li>
+<li>Sequence with longer reads whenever possible. Tophat is more accurate in presence of longer reads in compare to shorter reads. However, since the cost of sequencing with longer reads is substantially more than shorter reads, some researchers prefer to do more replicates or more samples with shorter reads.</li>
+<li>Identify new genes with traditional cloning and PCR-based techniques because transcriptome assembly is difficult.</li>
+</ol>
+<h2 id="limitations-of-the-protocols">Limitations of the protocols</h2>
+<ol>
+<li>Both Tophat and Cufflinks require a reference genome.</li>
+<li>The protocol assumes that RNASeq was done using Illumina or Solid sequencing techniques.</li>
+</ol>
+<h2 id="references">References</h2>
+<ul>
+<li>Trapnell C, Roberts A, Pachter L, et al. Differential gene and transcript expression analysis of RNA-seq experiments with TopHat and Cufflinks. <em>Nature Protocols</em> [serial online]. March 1, 2012;7(3):562-578.</li>
+<li>James T. Robinson, Helga Thorvaldsdóttir, Wendy Winckler, Mitchell Guttman, Eric S. Lander, Gad Getz, Jill P. Mesirov.<a href="http://www.nature.com/nbt/journal/v29/n1/abs/nbt.1754.html"> </a><a href="http://www.nature.com/nbt/journal/v29/n1/abs/nbt.1754.html"><strong><em>Integrative Genomics Viewer</em></strong></a><a href="http://www.nature.com/nbt/journal/v29/n1/abs/nbt.1754.html"><em>. Nature Biotechnology 29, 24–26 (2011)</em></a>,</li>
+</ul>
+<p>[^1]: <em>The published protocol has been designed for running on the
+    command line in Linux. This tutorial has been adapted to use on the
+    web-based Galaxy platform.</em></p>
+<p>[^2]: <em>Note: Cuffmerge is a meta-assembler. It treats the assemblies
+    created by Cufflinks the same way Cufflinks treats reads from
+    Tophat. That is, it produces a parsimonious transcript assembly of
+    the assemblies. The difference between Cuffmerge and Cuffcompare is
+    that if we have two transfrags A and B, Cuffcompare only combines
+    the two where either A or B is ‘contained’ in the other transfrag or
+    in other words one of them is redundant; whereas Cuffmerge assembles
+    them if they overlap with each other and agree on splicing.</em></p>
+<p>[^3]: <em>Since CummRbund is currently not installed on Galaxy, the
+    underlying steps are not included in this tutorial; instead we use
+    IGV (Robinson et al 2011) and Trackster for visualizing the output
+    which are accessible from Galaxy.</em></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../includes/media/delayed-jquery.js"></script>
+        <script src="../../../includes/media/mdx_showable.js"></script>
+    </body>
+</html>

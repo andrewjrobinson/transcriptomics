@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+	<title>NGS Overview - LSCC Documentation</title>
+
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link href="../../../includes/media/mdx_showable.css" rel="stylesheet">
+        <link href="../../../includes/media/mdx_showable_user.css" rel="stylesheet">
+        <link href="../../../includes/media/slides.css" rel="stylesheet">
+        <link href="../../../includes/media/tute.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">LSCC Documentation</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../">Overview</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">NGS Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../using_git/Using_Git/">Using Git and Github for revision control</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../var_detect_advanced/var_detect_advanced_background/">Variant Detection Advanced</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../rna_seq_dge_basic/rna_seq_basic_background/">RNA Seq Basic</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../rna_seq_exp_design/rna_seq_experimental_design/">RNA Seq Experimental Design</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../hpc/">Introduction to HPC</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../unix/">Introduction to Unix</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../python_overview/python_overview/">Python Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../transcriptomics/">Transcriptomics</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../../">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../../using_git/Using_Git/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#next-generation-sequencing-overview">Next Generation Sequencing Overview</a></li>
+        
+            <li><a href="#sequencing-technologies">Sequencing technologies</a></li>
+        
+            <li><a href="#applications">Applications</a></li>
+        
+            <li><a href="#categories-of-analysis">Categories of analysis</a></li>
+        
+            <li><a href="#sample-preparation">Sample preparation</a></li>
+        
+            <li><a href="#potential-services-in-ngs">Potential services in NGS</a></li>
+        
+            <li><a href="#appendix">Appendix</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="next-generation-sequencing-overview">Next Generation Sequencing Overview</h1>
+<h2 id="sequencing-technologies">Sequencing technologies</h2>
+<ol>
+<li>Sequencing by hybridisation and ligation (Complete Genomics, Life Technologies, Polonator)<ol>
+<li>Emulsion PCR amplification</li>
+<li>Detection: Cyclic ligation of nucleotide dimers. Multiple rounds required.</li>
+</ol>
+</li>
+<li>Sequencing by synthesis (Helicos, Illumina, Intelligent Bio-Sys)<ol>
+<li>Bridge PCR amplification on slides</li>
+<li>Detection: cyclic addition of reversible polymerisation terminators</li>
+</ol>
+</li>
+<li>Real-time sequencing by synthesis (Pacific BioSciences, VisiGen)<ol>
+<li>Single molecule, no amplification</li>
+<li>Cyclic removal of nucleotide and measure change in conductance of micropore</li>
+</ol>
+</li>
+<li>Pyrosequencing (Roche/454™).<ol>
+<li>Emulsion PCR amplification</li>
+<li>Detection: cyclic addition of single nucleotide species and detection of number of pyrophosphates released during polymerisation (through ATP to luciferase reaction)</li>
+</ol>
+</li>
+</ol>
+<h2 id="applications">Applications</h2>
+<h4 id="genomic">Genomic</h4>
+<ol>
+<li><strong>Whole genome resequencing</strong> for <strong>variation detection</strong></li>
+<li>Whole genome sequencing for de novo assembly</li>
+<li>Metagenomics (sequencing of multiple genomes together in a 'metasample')</li>
+<li><strong>Targetted resequencing</strong> for variation detection<ol>
+<li><strong>Exome sequencing</strong>/targetted exome capture</li>
+<li>Arbitrary PCR enrichment of target</li>
+</ol>
+</li>
+</ol>
+<h4 id="epigenomic">Epigenomic</h4>
+<ol>
+<li><a href="http://www.illumina.com/technology/chip_seq_assay.ilmn">CHiP-Seq</a> through sequencing of DNA enriched by immunoprecipitation</li>
+<li><strong>DNA methylation analysis</strong></li>
+<li>Sequencing of DNA enriched through immunoprecipitation of 5-methylcytosine ()</li>
+<li>Methylation-sensitive restriction enzyme fragment enrichment</li>
+</ol>
+<h4 id="transcriptomic-rna-seq">Transcriptomic (RNA-seq)</h4>
+<ol>
+<li>Whole transcriptome <strong>expression profiling</strong> (comparative gene expression)</li>
+<li>Whole transcriptome sequencing for de novo assembly (identify genes)</li>
+<li><strong>Strand-specific mRNA-seq</strong></li>
+<li><strong>Paired-end RNA-seq</strong></li>
+<li><strong>Whole transcriptome variation detection</strong></li>
+<li><strong>Differential splicing detection</strong></li>
+<li>sRNA analysis</li>
+</ol>
+<h3 id="types-of-outcome">Types of outcome</h3>
+<h4 id="variation-detection"><strong>Variation Detection</strong></h4>
+<ol>
+<li>Copy number variation (CNV)</li>
+<li>Single Nucleotide Polymorphisms (SNPs)</li>
+<li>Insertions and deletions (Indels)</li>
+<li>Rearrangements</li>
+</ol>
+<h4 id="de-novo-assembly">De Novo assembly</h4>
+<p>Concatemers (length?)</p>
+<h4 id="comparative-gene-expression">Comparative gene expression</h4>
+<p>Matrix of gene vs expression level</p>
+<h4 id="splicing-detection">Splicing detection</h4>
+<p>List of alternative splice isoforms</p>
+<h4 id="resequencing-alignment-strategies">Resequencing alignment strategies</h4>
+<ol>
+<li>Align to transcriptome (simplest)</li>
+<li>Align to genome and exon-exon junction sequences (discover new transcripts, splice variants)</li>
+<li>De novo (most complex)</li>
+</ol>
+<h2 id="categories-of-analysis">Categories of analysis</h2>
+<p>NGS informatics may be categorised into:</p>
+<p><strong>1. Primary analysis:</strong></p>
+<p>Conversion of imagesets (output from NGS machines) into strings of bases - 'base calling'.</p>
+<p><em>Inputs:</em></p>
+<ul>
+<li><em>Image files from NGS machine</em></li>
+</ul>
+<p><em>Outputs:</em></p>
+<ul>
+<li><em>Short reads</em></li>
+</ul>
+<p><em>Software:</em></p>
+<ul>
+<li>Firecrest and Bustard (for Illumina) </li>
+</ul>
+<p><strong>2. Secondary analysis:</strong></p>
+<p>Assembly of short strings of bases (output of primary analysis) into
+contigs, and/or -Li Jason 11/18/09 2:43 PM alignment onto a reference
+genome and extraction of the first level of genomic meaning (SNP,
+rearrangements)</p>
+<p><em>Inputs:</em></p>
+<ul>
+<li><em>Short reads (20-30million/run?)</em></li>
+</ul>
+<p><em>Outputs:</em></p>
+<ul>
+<li><em>Aligned sequences against a reference genome</em></li>
+<li><em>SNP analysis</em></li>
+<li><em>Copy number variation data</em></li>
+<li><em>Quantified expression data</em></li>
+</ul>
+<p><em>Software:</em></p>
+<ul>
+<li>E.g. Eland, BWA, MAQ for alignment. Velvet, ABySS for de-novo
+assembly. </li>
+</ul>
+<p><em>References:</em></p>
+<p><a href="http://www.illumina.com/Documents/products/technotes/technote_denovo_assembly.pdf">http://www.illumina.com/Documents/products/technotes/technote_denovo_assembly.pdf</a></p>
+<p><strong>3. Tertiary analysis</strong></p>
+<p>Extraction of biological information from the aligned sequences.
+Annotation of sequence data.</p>
+<p><em>Inputs:</em></p>
+<ul>
+<li><em>E.g. Aligned sequences, SNP analysis </em></li>
+</ul>
+<p><em>Outputs:</em></p>
+<ul>
+<li><em>Biological and statistical interpretations and visualisations</em></li>
+</ul>
+<p>At each stage there are multiple options for processing - vendor
+software, open source software, each with varying levels of accuracy and
+computational expense. There are also large amounts of data produced at
+each stage. Additionally, primary and secondary analysis are dependent
+on the NGS platform being supported - Illumina Solexa pipeline is
+different to an Applied Biosystems SOLiD pipeline.</p>
+<p><strong>Anecdotally, 80% of processing in a NGS project is manual and occurs
+mainly in tertiary analysis.</strong></p>
+<h2 id="sample-preparation">Sample preparation</h2>
+<h3 id="fragment">Fragment</h3>
+<p>Each read is independent - an arbitrary fragment of DNA with no
+meta-information about the relationship of that read to any other read</p>
+<h3 id="paired-end-sequencing">Paired-end sequencing</h3>
+<p>Each fragment is sequenced twice, once from each end, in succession.
+Probably the reads will not overlap, as the average length of a fragment
+is normally &gt;2x that of a read.</p>
+<p>The two reads are thus 'related' and have extra information about the
+structure of the sample. The information is that the two reads from the
+single fragment are 'close' - depending on the length of fragments that
+were prepared for the run.</p>
+<p><a href="http://www.illumina.com/technology/paired_end_sequencing_assay.ilmn">http://www.illumina.com/technology/paired_end_sequencing_assay.ilmn</a></p>
+<h3 id="mate-pair"><strong>Mate-pair</strong></h3>
+<p>Similar to paired-end, but ends of sequenced fragment can be much
+further apart - up to 10kb (normally 2-5kb)</p>
+<p><a href="http://www.illumina.com/technology/mate_pair_sequencing_assay.ilmn">http://www.illumina.com/technology/mate_pair_sequencing_assay.ilmn</a></p>
+<h3 id="barcoded-fragments">Barcoded fragments</h3>
+<p>Multiple samples are prepared independently. Each sample is 'labelled'
+with a unique sequence adaptor (barcode). Samples are then mixed and
+sequenced together. Individual reads can be categorised to a particular
+sample by their barcodes.</p>
+<h3 id="enrichment-for-target-sequences">Enrichment for target sequences</h3>
+<ol>
+<li>PCR</li>
+<li>Hybridisation to oligo arrays</li>
+<li>PolyA selection (mRNA-seq)</li>
+<li>Size selection</li>
+<li>Precipitation</li>
+</ol>
+<p><img alt="" src="../media/image1.png" /></p>
+<h2 id="potential-services-in-ngs">Potential services in NGS</h2>
+<p>Courtesy <a href="http://web.research.colostate.edu/NGS/process.aspx?AspxAutoDetectCookieSupport=1">Colorado State Uni</a></p>
+<p>Sequence Matching Analysis</p>
+<ul>
+<li>
+<p>Align SOLiD colorspace reads with reference genomes</p>
+</li>
+<li>
+<p>Generate consensus sequences</p>
+</li>
+</ul>
+<p>Mate-Pair Analysis</p>
+<ul>
+<li>
+<p>Analyze paired reads from SOLiD mate-pair runs</p>
+</li>
+<li>
+<p>Improve accuracy of read matches to detect structural variations
+    &gt; between sample and reference genomes</p>
+</li>
+</ul>
+<p>SNP / Indel Analysis</p>
+<ul>
+<li>
+<p>Identify single nucleotide polymorphisms</p>
+</li>
+<li>
+<p>Identify insertion and deletion mutations in DNA sequences</p>
+</li>
+</ul>
+<p>Copy Number Variation Analysis</p>
+<ul>
+<li>Detect copy number variations in DNA sequences</li>
+</ul>
+<p>Whole Transcriptome Analysis</p>
+<ul>
+<li>
+<p>Map SOLiD reads from a transcript sample to reference genomes</p>
+</li>
+<li>
+<p>Assign tag counts to features of the reference genome</p>
+</li>
+<li>
+<p>Identify novel transcripts</p>
+</li>
+</ul>
+<p>Inversion Analysis</p>
+<ul>
+<li>Identify paracentric and pericentric chromosomal inversions</li>
+</ul>
+<p><em>de Novo</em> Assembly</p>
+<ul>
+<li>
+<p>Create <em>de novo</em> assemblies from SOLiD colorspace reads</p>
+</li>
+<li>
+<p>Characterize genomic sequences for which no closely related reference genome exists</p>
+</li>
+<li>
+<p>Assemble SOLiD reads from microbial genomes into nucleotide sequence contigs of several thousand bases, and scaffolds of tens of thousands of bases.</p>
+</li>
+<li>
+<p>Assemble SOLiD reads from microbial genomes into scaffolds of tens of thousands of bases</p>
+</li>
+</ul>
+<p>smRNA Analysis</p>
+<ul>
+<li>
+<p>Whole genome analysis of SOLiD RNA library reads</p>
+</li>
+<li>
+<p>Includes filtering, matching against miRBase sequences, and matching against reference genomes</p>
+</li>
+</ul>
+<p>NextGENe Analysis</p>
+<ul>
+<li>
+<p>NextGENe is a comprehensive NGS bioinformatics package</p>
+</li>
+<li>
+<p>NextGENe includes de novo assembly, target assembly, SNP/Indel discovery, digital gene expression analysis, whole transcriptome analysis, ChiPSeq analysis, miRNA discovery and quantification, and a condensation assembly tool for reducing instrument error</p>
+</li>
+</ul>
+<p>System Alignment Browser (SAB)</p>
+<ul>
+<li>
+<p>SAB is a graphical genome annotation viewer</p>
+</li>
+<li>
+<p>Used for viewing basespace and colorspace reads aligned to reference genomes</p>
+</li>
+</ul>
+<p>GFF Conversion</p>
+<ul>
+<li>
+<p>Convert SOLiD system mapping files into GFF-format files</p>
+</li>
+<li>
+<p>GFF is a standardized file format for describing DNA, RNA, and proteins</p>
+</li>
+</ul>
+<p>SRF Conversion</p>
+<ul>
+<li>
+<p>Convert SOLiD system reads into SRF format</p>
+</li>
+<li>
+<p>SRF is a standardized file format for describing DNA sequence data</p>
+</li>
+</ul>
+<h2 id="appendix">Appendix</h2>
+<h3 id="paired-end-sequencing-empirical-observations">Paired end sequencing - empirical observations</h3>
+<p><em>paired end</em> or <em>mate pair</em> refers to how the library is made, and
+then how it is sequenced. Both are methodologies that, in addition to
+the sequence information, give you information about the physical
+distance between the two reads in your genome. For example, you shear up
+some genomic DNA, and cut a region out at ~500bp. Then you prepare your
+library, and sequence 35bp from each end of each molecule. Now you have
+three pieces of information:</p>
+<ul>
+<li>the tag 1 sequence</li>
+<li>the tag 2 sequence*</li>
+<li>that they were 500bp ± (some) apart in your genome</li>
+</ul>
+<p>When we do 2x 50 bp paired-end runs on a GAIIx using the current gel
+purification step we get read distances of between that vary by about
+100 bp in a nice tight bell shaped curve starting between 160-200 bp. So
+the first thing to bear in mind is that L is not fixed within or between
+runs. Either way this group accounts for &gt;99.99% of paired-end reads in
+an assembly. Because of the way fragments are generated for sequencing 1
+and 2 can align either F-B of B-F.</p>
+<p>If you want to be more realistic there are always a tiny proportion of
+reads &lt;0.1% that align with much longer read distances, some of which
+is due to bioinformatics but some of which is real and simply reflects
+biology. Likewise a tiny proportion of reads at all read distances will
+be F-F or B-B. Also there appear to often be a tiny proportion of reads
+that come out overlapping where the read distance is the same as a read
+length ie 1+L+2 is, in this case, \~50-100. I have no idea of the
+prevelance of such reads but you can often find them if you look. Lastly
+if its not going to be part of the assembler, end trimming and quality
+trimming can often mean that 1 and 2 are different lengths and that a
+substantial number of reads from a paired end run end up with no partner
+at all.</p>
+<h3 id="mate-pair-sequencing">Mate-pair sequencing</h3>
+<p>Illumina refers to "paired end" as the original library preparation
+method they use, where you sequence each end of the same molecule.
+Because of the way the cluster generation technology works, it is
+limited to an inter-pair distance of ~300bp ( 200-600bp).</p>
+<p>Illumina refers to <em>mate pairs</em> as sequences derived from their newer
+library prep method which is designed to provide paired sequences
+separated by a greater distance (between about 2 and 10kb). This method
+still actually only sequences the ends of ~400bp molecules, but this
+template is derived from both ends of a 2-10kb fragment that has had the
+middle section cut out and the 'internal' ends ligated in the middle.
+Basically, you take your 2-10kb random fragments, biotinylate the end,
+circularise them, shear the circles to ~400bp, capture biotinylated
+molecules, and then sequence those (they go into what is essentially a
+standard 'paired end' sample prep procedure).</p>
+<p>Source: <a href="http://seqanswers.com/forums/showthread.php?t=503">http://seqanswers.com/forums/showthread.php?t=503</a></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../includes/media/delayed-jquery.js"></script>
+        <script src="../../../includes/media/mdx_showable.js"></script>
+    </body>
+</html>

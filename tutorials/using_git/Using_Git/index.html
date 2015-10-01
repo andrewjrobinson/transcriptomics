@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+	<title>Using Git and Github for revision control - LSCC Documentation</title>
+
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link href="../../../includes/media/mdx_showable.css" rel="stylesheet">
+        <link href="../../../includes/media/mdx_showable_user.css" rel="stylesheet">
+        <link href="../../../includes/media/slides.css" rel="stylesheet">
+        <link href="../../../includes/media/tute.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">LSCC Documentation</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../">Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../ngs_overview/NGS_Overview/">NGS Overview</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Using Git and Github for revision control</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../var_detect_advanced/var_detect_advanced_background/">Variant Detection Advanced</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../rna_seq_dge_basic/rna_seq_basic_background/">RNA Seq Basic</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../rna_seq_exp_design/rna_seq_experimental_design/">RNA Seq Experimental Design</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../hpc/">Introduction to HPC</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../unix/">Introduction to Unix</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../python_overview/python_overview/">Python Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../transcriptomics/">Transcriptomics</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../../ngs_overview/NGS_Overview/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../../var_detect_advanced/var_detect_advanced_background/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#using-git-and-github-for-revision-control">Using Git and Github for revision control</a></li>
+        
+            <li><a href="#what-is-git">What is Git?</a></li>
+        
+            <li><a href="#getting-help">Getting help</a></li>
+        
+            <li><a href="#a-simple-workflow">A simple workflow</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="using-git-and-github-for-revision-control">Using Git and Github for revision control</h1>
+<h2 id="what-is-git">What is Git?</h2>
+<p>Git is a revision control system. It is designed to help you keep track
+of collections of files which stem from a common source and undergo
+modifications over time. The files tend to be human generated text. It
+is very good at managing source code repositories, but it can also be
+used to manage other things, such as configuration files and text
+documents. It is not, however, a file backup system.</p>
+<p>Git encourages a distributed style of project development. Each
+contributor to a project has their own complete repository. Changes are
+shared between repositories by <em>pushing</em> changes to, or <em>pulling</em>
+changes from other repositories. Collaboration between developers is
+greatly enhanced by websites such as <a href="https://github.com/">github</a>,
+<a href="https://bitbucket.org/">bitbucket</a>
+and <a href="http://gitorious.org">gitorious</a> which
+provide convenient interfaces to managing multiple repositories.</p>
+<p>There are many alternatives to git which each have their pros and cons.
+Two of the more popular alternatives are:</p>
+<ul>
+<li>
+<p><a href="http://subversion.apache.org">Subversion</a> is particularly suited to a centralised model of development.</p>
+</li>
+<li>
+<p><a href="http://mercurial.selenic.com">Mercurial</a> is very similar to Git, but is sometimes considered more user friendly.</p>
+</li>
+</ul>
+<h2 id="getting-help">Getting help</h2>
+<p>There are lots of resources on the web for learning how to use Git. A
+popular reference is <em>Pro Git</em>, which is freely available online
+(<a href="http://git-scm.com/book">http://git-scm.com/book</a>). Another good
+reference is the book <em>Version Control with Git</em>, by Loeliger and
+McCullough.</p>
+<h2 id="a-simple-workflow">A simple workflow</h2>
+<h3 id="step-1-create-a-github-account">Step 1, create a github account.</h3>
+<p>Create a github account (<a href="https://github.com/">https://github.com/</a>).
+Do this step once only (unless you need multiple accounts).</p>
+<p>You get unlimited numbers of (world readable) public repositories for
+free.</p>
+<p>Private repositories (that can be shared with selected users) cost money
+(see <a href="https://github.com/plans">https://github.com/plans</a>), but <a href="https://education.github.com/discount_requests/new">discounts are available for academics</a>.</p>
+<h3 id="step-2-sign-into-github-and-create-a-repository">Step 2, sign into github and create a repository.</h3>
+<p>Sign in to your github account and create a new repository. Do this once
+for every new project you have.</p>
+<p><img alt="" src="../media/image05.png" /></p>
+<p>You will need to provide some information:</p>
+<ul>
+<li>
+<p>the repository name</p>
+</li>
+<li>
+<p>a description of the repository</p>
+</li>
+<li>
+<p>choose whether it is public (free) or private (costs money)</p>
+</li>
+<li>
+<p>whether to initialise with a dummy README file (it is useful)</p>
+</li>
+<li>
+<p>whether to provide an initial .gitignore file (probably leave this
+    &gt; out in the beginning)</p>
+</li>
+</ul>
+<p><img alt="" src="../media/image10.png" /></p>
+<h3 id="step-3-clone-your-repository-to-your-local-computer">Step 3, clone your repository to your local computer.</h3>
+<p>Clone your new repository from github to your local computer.</p>
+<p>Each repository on github is identified by a URL, which will look like
+the one below:</p>
+<p><img alt="" src="../media/image06.png" /></p>
+<p>Run the command below on your development machine in the directory where
+you want to keep the repository (of course you should use the actual URL
+of your own repository, not the one in the example).</p>
+<pre><code>$ git clone https://github.com/bjpop/test.git
+Cloning into 'test'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+</code></pre>
+
+<p>This will create a directory with the same name as your repository (in this example it is called <code>test</code>).</p>
+<p>If you change into that directory and list its contents you will see a
+<code>.git</code> subdirectory, which is where Git keeps all the data for your
+repository. You will also see working copies of the files in the
+project. In this example the only such file is <code>README.md</code> which was
+created automatically by github when the repository was first created.
+(The .md extension on the file suggests that it uses the <em>Markdown</em>
+syntax, see <a href="https://help.github.com/articles/github-flavored-markdown">https://help.github.com/articles/github-flavored-markdown</a>).</p>
+<pre><code>$ cd test
+$ ls -a
+. .. .git README.md
+$ ls .git
+branches config description HEAD hooks index info logs objects packed-refs refs
+</code></pre>
+
+<h3 id="step-4-commit-a-file-to-the-repository">Step 4, commit a file to the repository.</h3>
+<p>Create a new file in the repository on your local computer and commit it
+to your local repository.</p>
+<p>How you create the file is immaterial. You could copy it from somewhere
+else, create it in a text editor. In this case we’ll make a little
+python program:</p>
+<pre><code>$ echo 'print(&quot;hello world&quot;)' &gt; hello.py
+</code></pre>
+
+<p>Test that your new file is satisfactory, in this case we test our code:</p>
+<pre><code>$ python hello.py
+hello world
+</code></pre>
+
+<p>Check the status of your repository:</p>
+<pre><code>$ git status
+# On branch master
+# Untracked files:
+# (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+#
+# hello.py
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</code></pre>
+
+<p>Notice that git tells you that the new file <code>hello.py</code> is not tracked
+(not in the repository).</p>
+<p>When you are happy with your file, you can stage it (this is not a
+commit), but it will cause the file to be tracked:</p>
+<pre><code>$ git add hello.py
+</code></pre>
+
+<p>Note that git uses a two-stage process for committing changes. The first
+stage is to "stage" your changes. Staged changes appear in the
+repository index, but are not committed. You can stage many changes
+together, and even amend or undo previously staged (but not committed)
+changes. The second stage is to commit the current staged changes to the
+repository. Committing causes the changes to be reflected in the state
+of the repository.</p>
+<p>Re-check the status of your repository:</p>
+<pre><code>$ git status
+# On branch master
+# Changes to be committed:
+# (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+# new file: hello.py
+#
+</code></pre>
+
+<p>Now we can see that the changes to <code>hello.py</code> have been staged and are
+ready to be committed. Notice that <code>hello.py</code> is no longer untracked.</p>
+<p>Commit your changes with a commit message:</p>
+<pre><code>$ git commit -m &quot;A little greeting program&quot;
+[master b1cce11] A little greeting program
+1 files changed, 1 insertions(+), 0 deletions(-)
+create mode 100644 hello.py
+</code></pre>
+
+<p>Re-check the status of your repository:</p>
+<pre><code>$ git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+nothing to commit (working directory clean)
+</code></pre>
+
+<p>Now we see that there a no uncommitted changes in the repository,
+however git tells us that our local repository is one commit ahead of
+the github version (which it calls <code>origin/master</code>).</p>
+<h3 id="step-5-push-your-changes-to-github">Step 5, push your changes to github.</h3>
+<p>Push the commit in your local repository to github (thus synchronising them).</p>
+<pre><code>$ git push origin
+Username for 'https://github.com': &lt;type your github username&gt;
+Password for 'https://&lt;your github username&gt;@github.com': 
+Counting objects: 4, done.
+Delta compression using up to 16 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 305 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/bjpop/test.git
+71a771a..b1cce11 master -&gt; master
+</code></pre>
+
+<p>Now if you look at your repository on github you should see the file
+<code>hello.py</code> has been uploaded, along with its commit time and commit
+message.</p>
+<p><img alt="" src="../media/image07.png" /></p>
+<p>You can inspect the contents of the file on github by clicking on its
+name:</p>
+<p><img alt="" src="../media/image08.png" /></p>
+<h3 id="step-6-create-a-branch-in-your-local-repository">Step 6, create a branch in your local repository.</h3>
+<p>You can ask git to tell you about the names of the current branches:</p>
+<pre><code>$ git branch
+* master
+</code></pre>
+
+<p>By default your repository starts with a branch called master. The
+asterisk next to the branch name tells you which is the current branch
+(at the moment there is only one branch).</p>
+<pre><code>$ git branch documentation
+$ git branch
+documentation
+* master
+</code></pre>
+
+<p>The first command above creates a new branch called <code>documentation</code>. The
+second command shows us that the new branch has been created, but the
+current branch is still <code>master</code>.</p>
+<p>To switch to another branch you must check it out:</p>
+<pre><code>$ git checkout documentation
+Switched to branch 'documentation'
+$ git branch
+* documentation
+master
+</code></pre>
+
+<p>Let’s add a change to our existing <code>hello.py</code> file:</p>
+<pre><code>$ echo '#this is a comment' &gt;&gt; hello.py
+</code></pre>
+
+<p>Check the status of the repository (now in the documentation branch):</p>
+<pre><code>$ git status
+# On branch documentation
+# Changes not staged for commit:
+# (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+# (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working
+ directory)
+#
+# modified: hello.py
+#
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+
+<p>Stage the new changes and commit them, and check the status again:</p>
+<pre><code>$ git add hello.py 
+$ git commit -m &quot;Added a comment&quot;
+[documentation 9bbe430] Added a comment
+1 files changed, 1 insertions(+), 0 deletions(-)
+$ git status
+# On branch documentation
+nothing to commit (working directory clean)
+</code></pre>
+
+<p>Now we can push the new “documentation” branch to github:</p>
+<pre><code>$ git push origin documentation
+Username for 'https://github.com': &lt;your github username&gt;
+Password for 'https://&lt;your github username&gt;@github.com': 
+Counting objects: 5, done.
+Delta compression using up to 16 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 314 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/bjpop/test.git
+* [new branch] documentation -&gt; documentation
+</code></pre>
+
+<p>On github you should be able to see the new branch:</p>
+<p><img alt="" src="../media/image11.png" /></p>
+<h3 id="step-7-merge-the-changes-back-into-the-master">Step 7, merge the changes back into the master</h3>
+<p>branch.</p>
+<p>To go back to the master branch you must check it out:</p>
+<pre><code>$ git checkout master
+Switched to branch 'master'
+</code></pre>
+
+<p>You can confirm that the master branch does not yet have the changes
+made in the documentation branch:</p>
+<pre><code>$ cat hello.py 
+print(&quot;hello world&quot;)
+</code></pre>
+
+<p>Notice that the comment is missing.</p>
+<p>You can pull the changes in the documentation branch back into the
+master branch with the merge command:</p>
+<pre><code>$ git merge documentation
+Updating b1cce11..9bbe430
+Fast-forward
+hello.py | 1 +
+1 files changed, 1 insertions(+), 0 deletions(-)
+</code></pre>
+
+<p>In this case the merge was easy because there were no conflicts between
+master and documentation. In this case git automatically updates the
+tracked files in the current branch.</p>
+<p>We can test that the changes have taken place by looking at the contents
+of hello.py:</p>
+<pre><code>$ cat hello.py 
+print(&quot;hello world&quot;)
+#this is a comment
+</code></pre>
+
+<p>Check the status of the master branch:</p>
+<pre><code>$ git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+nothing to commit (working directory clean)
+</code></pre>
+
+<p>Push the changes in the master branch back to github:</p>
+<pre><code>$ git push origin master
+Username for 'https://github.com': bjpop
+Password for 'https://bjpop@github.com': 
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/bjpop/test.git
+b1cce11..9bbe430 master -&gt; master
+</code></pre>
+
+<p>Again you can verify on github that the changes have taken place.</p>
+<p>To get an idea of the history of a project you can ask for a log of the
+commit messages:</p>
+<pre><code>$ git log
+commit 9bbe430f6e8b70187927b4a70a8402f71b17b426
+Author: Bernie &lt;florbitous@gmail.com&gt;
+Date: Fri Mar 15 12:30:39 2013 +1100
+Added a comment
+commit b1cce115fb40a9b11917db7eb73c8295e276bb09
+Author: Bernie &lt;florbitous@gmail.com&gt;
+Date: Fri Mar 15 12:08:01 2013 +1100
+A little greeting program
+commit 71a771a86b8116c3f93c99db5416bfa371a6f772
+Author: Bernie Pope &lt;florbitous@gmail.com&gt;
+Date: Thu Mar 14 17:29:02 2013 -0700
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../includes/media/delayed-jquery.js"></script>
+        <script src="../../../includes/media/mdx_showable.js"></script>
+    </body>
+</html>

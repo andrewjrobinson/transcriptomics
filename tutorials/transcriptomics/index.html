@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>Transcriptomics - LSCC Documentation</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../includes/media/mdx_showable.css" rel="stylesheet">
+        <link href="../../includes/media/mdx_showable_user.css" rel="stylesheet">
+        <link href="../../includes/media/slides.css" rel="stylesheet">
+        <link href="../../includes/media/tute.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">LSCC Documentation</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../">Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../ngs_overview/NGS_Overview/">NGS Overview</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../using_git/Using_Git/">Using Git and Github for revision control</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../var_detect_advanced/var_detect_advanced_background/">Variant Detection Advanced</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../rna_seq_dge_basic/rna_seq_basic_background/">RNA Seq Basic</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../rna_seq_exp_design/rna_seq_experimental_design/">RNA Seq Experimental Design</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../hpc/">Introduction to HPC</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../unix/">Introduction to Unix</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../python_overview/python_overview/">Python Overview</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Transcriptomics</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../python_overview/python_overview/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#transcriptomics-workshop">Transcriptomics Workshop</a></li>
+        
+            <li><a href="#1-background">1. Background</a></li>
+        
+            <li><a href="#2-data-qc">2. Data QC</a></li>
+        
+            <li><a href="#3-mapping-rnaseq-data">3. Mapping RNAseq Data</a></li>
+        
+            <li><a href="#4-visualising-mapped-data">4. Visualising mapped data</a></li>
+        
+            <li><a href="#5-gene-counting">5. Gene Counting</a></li>
+        
+            <li><a href="#6-differential-gene-expression">6. Differential Gene Expression</a></li>
+        
+            <li><a href="#day-two">Day two</a></li>
+        
+            <li><a href="#7-transcriptome-assembly">7. Transcriptome Assembly</a></li>
+        
+            <li><a href="#8-visualising-transcripts">8. Visualising transcripts</a></li>
+        
+            <li><a href="#9-annotating-transcripts">9. Annotating transcripts</a></li>
+        
+            <li><a href="#10-summary">10. Summary</a></li>
+        
+            <li><a href="#11-individual-project-discussions">11.  Individual Project Discussions</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<style src="../../includes/media/tute.css" ></style>
+
+<style>em {font-style: normal; font-family: courier new;} h2 {font-size: 24px; font-weight: bold} h3 {font-size: 18px; font-weight: bold} h4 {font-size: 16px; font-weight: bold}</style>
+
+<h1 id="transcriptomics-workshop">Transcriptomics Workshop</h1>
+<p><strong>La Trobe University October 2015</strong></p>
+<p><strong>Authors</strong>:  Nathan Hall &amp; Andrew Robinson</p>
+<h2 id="1-background">1. Background</h2>
+<p>This Workshop is designed to be run over one and a half days.  No prior bioinformatics or unix knowledge is required.</p>
+<h3 id="intro-to-sequencing-where-does-the-data-come-from">Intro to Sequencing - where does the data come from</h3>
+<p>The workshop will start lecture overview of where the data comes from, (Illumina technologies) and what types of transcriptomics experiments can be performed.</p>
+<h3 id="your-computer">Your Computer</h3>
+<p>The following programs will need to be installed on your computer to complete this tutorial.  If you are waiting for something to complete, feel free to install these programs ahead of time.</p>
+<h4 id="mac-unix">Mac &amp; Unix</h4>
+<ul>
+<li>IGV <a href="http://www.broadinstitute.org/software/igv/" target=_blank >[download]</a></li>
+<li>bandage <a href="https://github.com/rrwick/Bandage/releases/" target=_blank > [download]</a></li>
+</ul>
+<h4 id="windows">Windows</h4>
+<ul>
+<li>putty <a href="http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe" target=_blank >[download]</a></li>
+<li>winscp <a href="https://winscp.net/download/winscp575setup.exe" target=_blank >[download]</a>. You will have to install onto C drive by choosing non-standard installation</li>
+<li>IGV <a href="http://www.broadinstitute.org/software/igv/" target=_blank >[download]</a>.  Download the binary distribution</li>
+<li>bandage <a href="https://github.com/rrwick/Bandage/releases/" target=_blank >[download]</a></li>
+</ul>
+<p>If you are installing onto the room computers, install everything on the desktop.</p>
+<h3 id="remote-log-in">Remote log in</h3>
+<p>In this topic we will learn how to connect to a <em>Unix</em> computer via a method called <em>SSH</em> and run a few basic commands.</p>
+<p>To begin this workshop you will need to connect to an HPC.  Today we will use the LIMS-HPC.  The computer called 
+<em>lims-hpc-m</em> (m is for master which is another name for head node) is the one that coordinates all the HPCs tasks.</p>
+<p><strong>Server details</strong></p>
+<ul>
+<li><strong>host</strong>: lims-hpc-m.latrobe.edu.au</li>
+<li><strong>port</strong>: 6022 </li>
+<li><strong>username</strong>: trainingXX (where XX is a two digit number, provided at workshop)</li>
+<li><strong>password</strong>: (provided at workshop) </li>
+</ul>
+<div class="showable-container indent showable-hidden" id="showable0">
+<div class="showable-inner">
+<div class="showable-header indent" id="showabletitle0"><a href="" id="showablelink0">Mac OS X / Linux</a></div>
+<div class="showable-body indent" id="showablebody0">
+<p>Both Mac OS X and Linux come with a version of ssh (called OpenSSH) that can be used from the command line.  To use OpenSSH you must 
+first start a terminal program on your computer.  On OS X the standard terminal is called Terminal, and it is installed by default. 
+On Linux there are many popular terminal programs including: xterm, gnome-terminal, konsole (if you aren't sure, then xterm is a good 
+default).  When you've started the terminal you should see a command prompt.  To log into LIMS-HPC, for example, type this command at 
+the prompt and press return (where the word username is replaced with your LIMS-HPC username):</p>
+<pre><code class="sh">ssh -p 6022 username@lims-hpc-m.latrobe.edu.au
+</code></pre>
+
+<p>The same procedure works for any other machine where you have an account except most other HPCs will not need the <em>-p 6022</em> 
+(which is telling ssh to connect on a non-standard port number).</p>
+<p>You may be presented with a message along the lines of:</p>
+<pre><code class="text">The authenticity of host 'lims-hpc-m.latrobe.edu.au (131.172.36.150)' can't be  established.
+...
+Are you sure you want to continue connecting (yes/no)?
+</code></pre>
+
+<p>Although you should never ignore a warning, this particular one is nothing to be concerned about; type <strong>yes</strong> and then <strong>press enter</strong>. 
+If all goes well you will be asked to enter your password.  Assuming you type the correct username and password the system should 
+then display a welcome message, and then present you with a Unix prompt.  If you get this far then you are ready to start entering 
+Unix commands and thus begin using the remote computer.</p>
+</div>
+</div>
+</div>
+<script>(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
+<script>
+    $(document).ready(function(){
+        $("#showablelink0").click(function(e){
+            e.preventDefault();
+            $("#showable0").toggleClass("showable-hidden");
+        });
+    });
+    </script>
+<div class="showable-container indent showable-hidden" id="showable1">
+<div class="showable-inner">
+<div class="showable-header indent" id="showabletitle1"><a href="" id="showablelink1">Windows</a></div>
+<div class="showable-body indent" id="showablebody1">
+<p>On Microsoft Windows (Vista, 7, 8) we recommend that you use the PuTTY ssh client.  PuTTY (putty.exe) can be downloaded 
+from this web page:</p>
+<p><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a></p>
+<p>Documentation for using PuTTY is here:</p>
+<p><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html</a></p>
+<p>When you start PuTTY you should see a window which looks something like this:</p>
+<p><img src="../../includes/media/putty1.png" title="Putty Connection Dialog" alt="Putty Connection Dialog" width="400px" /></p>
+<p>To connect to LIMS-HPC you should enter its hostname into the box entitled "Host Name (or IP address)" and <em>6022</em> in the port, 
+then click on the Open button. All of the settings should remain the same as they were when PuTTY started (which should be the 
+same as they are in the picture above).</p>
+<p>In some circumstances you will be presented with a window entitled PuTTY Security Alert. It will say something along the lines 
+of <em>"The server's host key is not cached in the registry"</em>. This is nothing to worry about, and you should agree to continue (by 
+clicking on Yes). You usually see this message the first time you try to connect to a particular remote computer.</p>
+<p>If all goes well, a terminal window will open, showing a prompt with the text <em>"login as:"</em>. An example terminal window is shown 
+below. You should type your LIMS-HPC username and press enter. After entering your username you will be prompted for your 
+password. Assuming you type the correct username and password the system should then display a welcome message, and then 
+present you with a Unix prompt. If you get this far then you are ready to start entering Unix commands and thus begin using 
+the remote computer.</p>
+<p><img src="../../includes/media/putty2.png" title="Putty login screen" alt="Putty login screen" width="400px" /></p>
+</div>
+</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#showablelink1").click(function(e){
+            e.preventDefault();
+            $("#showable1").toggleClass("showable-hidden");
+        });
+    });
+    </script>
+<h3 id="basic-unix-commands">Basic Unix commands:</h3>
+<ul>
+<li><strong><em>cd</em></strong> - change directory</li>
+<li><strong><em>cp</em></strong> - copy files</li>
+<li><strong><em>ls</em></strong> - list files in a directory</li>
+<li><strong><em>more</em></strong> - look at the contents of a file, <em>space bar</em> to proceed to next page,  <em>q</em> to quit.</li>
+</ul>
+<h3 id="workshop-files">Workshop files</h3>
+<p>The files required for the workshop have already been copied into the training accounts.  Type the following commands</p>
+<pre><code class="sh">ls -l 
+</code></pre>
+
+<p>this gives you a list of the files already in your directory.  We will go through the contents of these files as we proceed through the workshop.</p>
+<h3 id="test-data-set">Test data set</h3>
+<p>This workshop is using real 100 bp single end Illumina HiSeq data for <em>Col-0</em> arabidopsis, but reads are limited to chromosome 1 of the genome to make the data files and computational time more manageable.  The data file chr1.fastq has over 2 million reads.  Typical read counts for a basic experiment is 15-20 million reads.</p>
+<h3 id="fastq-file-format">Fastq file format</h3>
+<p>line1: @sequence_name <br/>
+line2: sequence string<br/>
+line3: + character<br/>
+line4: quality string<br/></p>
+<p>Quality encoding ordered lowest quality to highest quality: <br />
+ <div class="info"><pre>!"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~</pre></p>
+<p>example:</p>
+
+<pre>
+@HWI-1KL119:131:C4W5NACXX:2:2201:14635:56396
+GAAATCGGACGGTTTAGTGAAAATGGAGTATCAAGTTGGGTTTGGGTTCCGTCCGAACGACGAGGAGCTC
++
+BB<00;B;7BFFFFBFB;FFBBB;BBB;;BBFBBFBFBBFFFFFFBBBFFFFIIIIIIIFIIIIIIIIFF
+</pre>
+
+</div>
+
+<p>You can look at the contents of the fastq file by typing</p>
+<pre><code class="sh">more chr1.fastq
+</code></pre>
+
+<p>Type <em>q</em> to exit the screen</p>
+<h2 id="2-data-qc">2. Data QC</h2>
+<p>The typical first step of an NGS project is to analyse the quality of the data.  The easiest way to do this is to uses the <em>fastqc</em> program</p>
+<p>The instructions to the computer are in the <em>run_fastqc</em> program that you copied earlier into your directory.  You can see the content of the <em>run_fastqc</em> file by typing</p>
+<pre><code class="sh">more fastqc
+</code></pre>
+
+<p>Type <em>q</em> to exit the screen</p>
+<p>A command called <em>sbatch</em> tells the computer to execute the <em>run_fastqc</em> instructions. The <em>fastqc</em> program is loaded using the <em>module load</em> command and the program is executed with the last line of the script: with <em>fastqc filename.fastq</em>.  Now we will submit this job to the computer.</p>
+<pre><code class="sh">sbatch run_fastqc
+</code></pre>
+
+<p><br>
+<div class="info"><p><b>Aside</b>: our computers run the <b>slurm</b> queueing system which uses <em>sbatch</em>, a similar command <em>qsub</em> is used for the <b>PBS</b> queueing system.</div></p>
+<p><br>
+Once you have submitted your job with the <em>sbatch</em> command you can see if it has finished by typing the <em>squeue</em> command, which lists all the current jobs. You can choose to only see your jobs with the command:</p>
+<pre><code class="sh">squeue -u trainingXX
+</code></pre>
+
+<p>where XX is replaced with your training account number. <br/></p>
+<p>Alternatively you can type</p>
+<pre><code class="sh">ls -lrt
+</code></pre>
+
+<p>You will see a list of files with the most recent at the bottom of the page
+the file that starts with slurm contains the output of your run_fastqc script
+You can see the contents of the slurm file by typing</p>
+<pre><code class="sh">more slurm-*
+</code></pre>
+
+<div class="info"><p><b>Aside</b>: the <em>*</em> character is a wildcard, so the above command will look at all files that starts with slurm.  At the moment we only have one file, but we can type in the full name to get the file of interest.  There is also the auto complete tab function.  Try typing <em>more slurm</em>, then the <em>tab</em> key to get an auto complete of the slurm file.  <b>Note</b>: auto complete does not work if the results are ambiguous</div>
+
+<h3 id="analysing-the-fastqc-output">Analysing the fastqc output:</h3>
+<p>The easiest way to to analyes the output of the fastqc job is to download the chr1_fastqc.zip file and visualise through a web browser.  </p>
+<h4 id="macs">Macs</h4>
+<p>From a mac terminal window (not the lims-hpc window) paste the following command:</p>
+<pre><code class="sh">scp -P 6022 trainingXX@lims-hpc-m.latrobe.edu.au:chr1_fastqc.zip ~/Desktop
+</code></pre>
+
+<p><strong>Note</strong>: You will need to replace XX with your training account number and enter the password when prompted.</p>
+<p>On your desktop, double click on the zip file, and then go into the extracted folder and double click on the .html file, and it should open up in your web browser.</p>
+<h4 id="windows_1">Windows</h4>
+<p>Install winscp and login using the settings below.  Make sure you have your correct training username
+﻿
+<img src="media/winscp-login.png" /></p>
+<p>You will then be able to drag the unix files (right screen) onto your local computer (left screen)
+The file you need transfer for for this fastqc analysis is <em>chr1_fastqc.zip</em></p>
+<p>Once the file is transferred, right click on the file and select extract.  You can then enter the extracted <em>chr1_fastqc</em> directory and open the <em>html</em> file.</p>
+<h3 id="analysis">Analysis</h3>
+<p>Once the html file is opened in your web browser, the things to look at are:<br/>
+Quality:<br/>
+GC content:<br/>
+overrepresented sequences - this is where adaptors can be noticed, 
+you may also want to blast any unknown overrepresented sequences.<br/></p>
+<p><strong>Note</strong>: these stats are optimised for genomes, NOT transcriptomes, so some things will not conform to expectations, particularly GC content and duplication rate.</p>
+<div class="info"><p><b>Aside</b>: Most modern Illumina data does not need quality trimming, but sometimes adaptor and quality trimming is still required.  <em>Trimmomatic</em> is one of the most commonly used trimming programs.</div>
+
+<h2 id="3-mapping-rnaseq-data">3. Mapping RNAseq Data</h2>
+<p>Once we have analysed the raw reads and satisfied ourselves that the data is OK, we can then start the mapping process using the <em>tophat</em> and <em>bowtie</em> programs.  Here each read is mapped to the reference genome (using bowtie) and then a second round of mapping (tophat) incorporates splice sites.</p>
+<p>For this mapping we can submit the job by typing</p>
+<pre><code class="sh">sbatch run_tophat
+</code></pre>
+
+<p>Have a look at the contents of this <em>run_tophat</em> script with the <em>more</em> command.  </p>
+<p>After the job has started there will be a tophat directory created. Type </p>
+<pre><code class="sh">cd tophat 
+</code></pre>
+
+<p>to go into the <em>tophat</em> directory.  Type <em>ls -l</em> to see what is there and use <em>more</em> to visualise any files text that are present.</p>
+<p>Use <em>cd dir_name</em> again to go into any subdirectories, <em>cd ..</em> to go up a directory, or just <em>cd</em> to go back to your home directory.</p>
+<p>Follow the status of your job with the <em>squeue</em> command and look at your slurm output file as for the previous job.</p>
+<p>When the run has finished, the most important file is <em>accepted_hits.bam</em>.
+This binary file contains all the the details of the data that maps to the genome including the mapping coordinates.</p>
+<p>To look at the text version of this bam file we use the <em>samtools</em> program.
+First this program needs to be loaded using the <em>module load</em> command, and then executed as below (copy and paste this into your terminal/putty window):</p>
+<pre><code class="sh">cd ~/tophat
+module load samtools-gcc/1.2
+samtools view accepted_hits.bam | more
+</code></pre>
+
+<p>Type <em>q</em> to get out of the <em>more</em> session
+We won’t worry about all the details of the sam file at this stage as we will look at some of the more informative fields later today.</p>
+<p>Look at the file <em>align_summary.txt</em> using the <em>more</em> command.  As we are only mapping chr1 reads this is not particularly interesting, but can be informative for full data sets as differing mapping rates across samples can alert you to library problems or other issues.</p>
+<h2 id="4-visualising-mapped-data">4. Visualising mapped data</h2>
+<p>This section uses the  Interactive Genome Viewer (IGV) will be used to look at reads that map to the genome.</p>
+<h3 id="installing-igv-on-your-computer">Installing IGV on your computer:</h3>
+<p>Before we can visualise the data, the program needs to be installed locally.</p>
+<p>Go to the <a href="http://www.broadinstitute.org/software/igv/">IGV webpage</a><br>
+You will need to register before you can download the application.  </p>
+<p>Windows users will need to run the program by opening <em>IGV</em> the <em>windows batch</em> file</p>
+<p>Once this <em>run_tophat</em> script has finished, we can copy the the important files to a local computer and visualise the mapped data interactively.</p>
+<h4 id="mac">Mac:</h4>
+<pre><code class="sh">scp -P 6022 trainingXX@lims-hpc-m.latrobe.edu.au:tophat/accepted_hits.bam* ~/Desktop
+</code></pre>
+
+<p><strong>Important</strong>: this copies the bam file and the index file.</p>
+<pre><code class="sh">scp -P 6022 trainingXX@lims-hpc-m.latrobe.edu.au:tophat/junctions.bed ~/Desktop
+</code></pre>
+
+<h4 id="windows_2">Windows:</h4>
+<p>Use <em>winscp</em> to copy the following files from the <em>tophat</em> directory: <em>accepted_hits.bam</em>, <em>accepted_hits.bam.bai</em>, <em>junctions.bed</em></p>
+<h3 id="visualisation">Visualisation</h3>
+<p>Now that <em>IGV</em> is installed and the files are transferred onto your computer, you can start IGV and read in the files. Choose the <em>A. Thaliana (TAIR 10)</em> genome from the genome menu (top LHS), then <em>file open</em> and choose the <em>bam</em> file and then the <em>bed</em> file.  You do not need to manually read in the <em>bai</em> file - this is done automatically.</p>
+<p><em>IGV</em> shows individual reads, with splicing details shown.  Things to see, histogram, splicing, read directions, how genes, introns and exons are displayed, reads that do not match the known genes etc…</p>
+<p>Find genes that have alternative splicing, retained introns, have good coverage, bad coverage, have overlapping reads with another gene or are interesting in any other way and record the AT numbers for later in the workshop.</p>
+<h2 id="5-gene-counting">5. Gene Counting</h2>
+<p>Once the data has been mapped, we can count each gene using the program <em>htseq-count</em>.
+This is a conceptually simple process, where if a read unambiguously maps to a gene, then that gene has one count.  </p>
+<p><strong>Note</strong>: alternative isoforms are ignored for most gene count experiments and counts are for all isoforms combined.</p>
+<p>Documentation for <em>htseq-count</em> is found here:</p>
+<p><a href="http://www-huber.embl.de/users/anders/HTSeq/doc/count.html">http://www-huber.embl.de/users/anders/HTSeq/doc/count.html</a></p>
+<p>The final output of htseq-count a table list of genes and their counts and is called <em>gene_counts.txt</em> and can be found in the <em>tophat</em> directory.  Use the <em>more</em> command to look at this file.</p>
+<p>Note that we are only mapping to genes on chromosome 1 so many genes have no reads.</p>
+<p>You can sort this file in terms of gene counts by using the command:</p>
+<pre><code class="sh">sort -k 2 -n gene_counts.txt | more
+</code></pre>
+
+<h3 id="further-gene-count-analysis">Further Gene count analysis</h3>
+<p>Go back to IGV and look at some genes with:</p>
+<p>High counts
+Middle level counts
+Low counts</p>
+<p>record a few AT numbers for later in the workshop</p>
+<h5 id="reads-not-counted">Reads not counted</h5>
+<p>When a read is mapped to more than one position in the genome, then this read is not counted by <em>htseq-count</em>.  In <em>IGV</em>, go to <em>AT1G11270</em> to see some reads that are not counted.  The white reads have a zero mapping quality.</p>
+<div class="info"><p><b>Info</b>: when you mouse over a read in IGV, it will show you mapping information. Take note of the <em>Cigar</em> string (M=match,  N=gap), <em>mapping quality</em> (50=good, low value=bad) and <em>NH</em> (number of hits, if >1 then mapping is ambiguous).  Google “samtools format” to see all the details </div>
+
+<p>Now go to <em>AT1G11300</em> and decide on whether you believe the apparent splicing in that gene.</p>
+<p>Visualise gene <em>AT1G64940</em>.  How many reads should be counted by <em>htseq-count</em> for these genes?
+Using the grep command below  (grep just extracts the line of the file that matches the string (AT number in this case)</p>
+<pre><code class="sh">grep AT1G64930 gene_counts.txt
+grep AT1G64940 gene_counts.txt
+</code></pre>
+
+<p>This will give you the counted reads for these genes</p>
+<p>Finally type:</p>
+<pre><code class="sh">tail gene_counts.txt
+</code></pre>
+
+<p>to see the number of reads that are not counted, and the reasons why:<br/>
+no_feature   <br/>
+ambiguous    <br/>
+alignment_not_unique     <br/></p>
+<h2 id="6-differential-gene-expression">6. Differential Gene Expression</h2>
+<p>Rather that mapping six whole transcriptomes and combining the results, we will use a file that has already been generated called <em>WT_MUT_counts.tsv</em>.  This comes from a data set being worked on in the Whelan lab, where a LETM gene has been knocked out and plants are put under a water stress environment.  Visualise this data table with the <em>more</em> command. </p>
+<p>We can do simple, but statistically valid differential expression analysis using a web server called <em>degust</em></p>
+<p><a href="http://vicbioinformatics.com/degust-training/" target=_blank >[http://vicbioinformatics.com/degust-training/]</a></p>
+<p>You will need to copy <em>WT_MUT_counts.tsv</em> onto your computer and then upload the data into degust.</p>
+<p>Follow these steps: <br/>
+1. Upload your <em>tsv</em> file<br/>
+2. give the dataset a name<br/>
+3. <em>Info columns</em> is set to <em>seqname</em>  <br/>
+4. enter <em>Min Read Count</em> as <em>10</em><br/>
+5. Group replicates using the <em>Add Condition</em> button<br/>
+6. Press <em>Save Changes</em> where you are done.<br/></p>
+<p>I will demonstrate the options of degust and help you interpret the results.</p>
+<p><img src="media/config.png" /></p>
+<h4 id="mds-plot-what-is-an-mds-plot-and-how-do-replicates-group">MDS plot - what is an MDS plot and how do replicates group?</h4>
+<p>MDS plot, (somewhat like principle component analysis), groups samples on 2D graph on their most variable genes.  Note: The groupings of replicates are not taken into account in this analysis.</p>
+<p>You can change the number of genes that are used to calculate the MDS plot. This does not usually have a large effect.</p>
+<h3 id="differential-expression-analysis">Differential expression analysis</h3>
+<p>There are two other tabs which relate to differential expression analysis.  <em>Expression - parallel coordinates</em>, and <em>Expression - MA plot</em>.  Parallel expression give you a heat map representation, and the MA plot is a measure of differential expression in combination with absolute expression.</p>
+<p>You will need to limit the genes you are viewing. <em>FDR cut off</em> (false discovery rate) is the main filter, but you can also choose to define an <em>absolute log FC</em> filter.  A value of 1 means that you require a two fold difference in expression (see below for explanation of log2 FC).</p>
+<p><img src="media/options.png" /></p>
+<div class="info"><p><b>Aside</b>: how to express expression changes : use log2 values<br/>
+If a fold change in expression (counts)  is 2, then log2=1<br/>
+If a fold change in expression is 4, then log2=2<br/>
+If a fold change in expression is 8, then log2=3<br/>
+If a fold change in expression is -2, then log2=-1<br/>
+If a fold change in expression is -4, then log2=-2<br/>
+If a fold change in expression is -8, then log2=-3<br/>
+Ratios of expressions (counts) don’t work as two fold reduction is 0.5, <br/>
+4 fold reduction is 0.25<br/>
+8 fold reduction is 0.125</div>
+
+<p>You can also change the analysis method from <em>Voom/Limma</em> to <em>edgeR</em>.</p>
+<div class="info"><p><b>Aside</b>: Limma and edgeR info<br/>
+<b>Voom/Limma</b>: Linear Models for Microarray and RNA-Seq Data<br/>
+Voom: http://genomebiology.com/2014/15/2/R29, precision weights unlock linear model analysis tools for RNA-seq read counts<br/>
+<b>edgeR</b>: Implements a range of statistical methodology based on the negative binomial distributions, including empirical Bayes estimation, exact tests, generalized linear models and quasi-likelihood tests.</div>
+
+<p>Spend some time interacting with these these pages, exploring what information can be gained from this data.  Look for patterns in the heatmaps, how may these relate to function?</p>
+<h2 id="day-two">Day two</h2>
+<h2 id="7-transcriptome-assembly">7. Transcriptome Assembly</h2>
+<p>When a reference genome is not available, then assembling the reads using programs such as <em>trinity</em> is the typical route of analysis.<br/>
+http://trinityrnaseq.github.io</p>
+<p>This workshop will take the same raw fastq data as was mapped to the genome and assemble it, then analyse some of the transcripts. For the sake of speed, only the first 250 thousand reads are assembled.  These correspond to approximately the first 2.5MB of chromosome 1.</p>
+<p>The first step is to make a file with these reads using the <em>head</em> command.  We take the first million lines as there are four lines per sequence.<br> </p>
+<pre><code class="sh">head -1000000 chr1.fastq&gt; chr1_250K.fastq
+</code></pre>
+
+<p>Look at the <em>run_trinity</em> file and then submit the job:</p>
+<pre><code class="sh">sbatch run_trinity
+</code></pre>
+
+<p>The final output file is called <em>Trinity.fasta</em> and is in the <em>trinity</em> directory
+The format of the output fasta file is:
+<em>c203_g1_i1</em></p>
+<p><em>c</em> represents the contig number - loosely represents a gene<br/>
+<em>g</em> represents the fragment number of the gene<br/>
+<em>i</em> represents the isoform or the sequence variant number</p>
+<h2 id="8-visualising-transcripts">8. Visualising transcripts</h2>
+<p>The <em>bandage</em> visualisation tool can be downloaded from 
+<a href="https://github.com/rrwick/Bandage/releases">https://github.com/rrwick/Bandage/releases</a>
+select the version that you require and install</p>
+<p>The <em>Trinity.fasta</em> file needs to be transferred onto your computer:</p>
+<h4 id="mac_1">mac</h4>
+<pre><code class="sh">scp -P 6022 trainingXX@lims-hpc-m.latrobe.edu.au:trinity/Trinity.fasta ~/Desktop
+</code></pre>
+
+<h4 id="windows_3">windows</h4>
+<p>copy the <em>Trinity.fasta</em> file, found in the <em>trinity</em> directory onto your local computer using <em>winscp</em>.</p>
+<h3 id="running-bandage">Running bandage</h3>
+<p>Open up the <em>Trinity.fasta</em> file with the <em>file/Load graph</em> menu option.  Then  press the <em>Draw graph</em> button.  This may take a little time.  You can search for particular contigs with the <em>Find nodes</em> search option.  you can only search at the cXXX level (gene model), you can’t put in the the entire contig name, so make sure you pick the <em>partial</em> search option.  You will need to come back to this program after the next step. </p>
+<h2 id="9-annotating-transcripts">9. Annotating transcripts</h2>
+<p>The best and easiest way to annotate transcript is to use <em>blast</em>.   We will now set up a blast job which will compare our assembled transcripts against a database of known arabidopsis proteins.  Firstly, look at the <em>run_blast</em> script and then submit the script.</p>
+<pre><code class="sh">sbatch run_blast
+</code></pre>
+
+<p>The output of the blast run is found in the text file call <em>Trinity_blast.txt</em>.</p>
+<p>Take some time looking over the blast output.</p>
+<p>Things you might look out for, and record some AT numbers:</p>
+<ol>
+<li>Correct full length transcripts <br/></li>
+<li>Partial transcripts<br/></li>
+<li>Alternative splicings<br/></li>
+<li>Fragmented assemblies<br/></li>
+<li>No hits<br/></li>
+<li>Anything else??<br/></li>
+</ol>
+<p>Go back to IGV, and search with the AT number and see how the reads relate to the blast results, comparing genes of first four categories above.  You can also visualise some of these alternatively spliced trinity transcripts in bandage.  <br/>
+Try visualising <em>AT1G02080</em> and the trinity assembly that matches this protein. See example below to see how to search for this.<br/>
+What do some of the alternative transcripts represent?<br/>
+How do they look in bandage and what do the reads look like in IGV?</p>
+<p>Have a look at <em>AT1G01030</em> in <em>IGV</em>.  How do you think the this would have assembled?
+Type the following command to see the blast hits to this gene.</p>
+<pre><code class="sh">more Trinity_blast.txt
+#then within the program type the following to search
+/AT1G01030
+</code></pre>
+
+<p>If you prefer, you can transfer this file onto your local computer and search it using your favorite text editor.</p>
+<div class="info"><p><b>Assembly Note</b>: When transcriptomes are assembled, all the data from all the conditions are usually combined to get a standard reference and minimise gene fragmentation for the low coverage genes.  All reads are then mapped back onto the transcriptome for counting and differential expression analysis</div>
+
+<div class="info"><p><b>Aside</b>: Where did the blast database come from?<br/>
+
+https://www.arabidopsis.org/download/index-auto.jsp?dir=%2Fdownload_files%2FSequences%2FTAIR10_blastsets<br/>
+The database was then indexed with the following blast command:<br/>
+<em>makeblastdb -in TAIR10_pep_20101214_updated.txt -out TAIR10_pep -title TAIR10_pep -dbtype prot</em></div>
+
+<h2 id="10-summary">10. Summary</h2>
+<p>This is the end of the formal part of the workshop.  This workshop has been designed to give you a greater understanding of the concepts and steps of RNA seq analysis. Things that you should have an understanding about are:<br/>
+1. Where does the data come from <br/>
+2. What is the quality of the data<br/>
+3. How the data is mapped to a reference <br/>
+4. How is the data assembled<br/>
+5. How are reads turned into counts<br/>
+6. What are the basic concepts of differential expression analysis<br/></p>
+<p>This workshop does not cover how to further analyse lists of differentially expressed genes.  The interpretation is often the hardest part of the analysis, and requires different approaches, depending on the experiment.</p>
+<p>Remember, the more you understand about the bioinformatics process, the more you can get out of the analysis.</p>
+<h2 id="11-individual-project-discussions">11.  Individual Project Discussions</h2>
+<p>Two transcriptome projects are rarely the same, in terms of design and analysis.  This final session gives you the opportunity to discuss aspects of your project, with other attendees and the workshop presenters.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../includes/media/delayed-jquery.js"></script>
+        <script src="../../includes/media/mdx_showable.js"></script>
+    </body>
+</html>
