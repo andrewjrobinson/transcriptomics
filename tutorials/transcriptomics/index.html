@@ -439,7 +439,7 @@ This is a conceptually simple process, where if a read unambiguously maps to a g
 <p>The final output of htseq-count a table list of genes and their counts and is called <em>gene_counts.txt</em> and can be found in the <em>tophat</em> directory.  Use the <em>more</em> command to look at this file.</p>
 <p>Note that we are only mapping to genes on chromosome 1 so many genes have no reads.</p>
 <p>You can sort this file in terms of gene counts by using the command:</p>
-<pre><code class="sh">sort -k 2 -n gene_counts.txt | more
+<pre><code class="sh">sort -k 2 -n -r gene_counts.txt | more
 </code></pre>
 
 <h3 id="further-gene-count-analysis">Further Gene count analysis</h3>
@@ -507,6 +507,17 @@ Voom: http://genomebiology.com/2014/15/2/R29, precision weights unlock linear mo
 <b>edgeR</b>: Implements a range of statistical methodology based on the negative binomial distributions, including empirical Bayes estimation, exact tests, generalized linear models and quasi-likelihood tests.</div>
 
 <p>Spend some time interacting with these these pages, exploring what information can be gained from this data.  Look for patterns in the heatmaps, how may these relate to function?</p>
+<h3 id="pathway-analysis">Pathway analysis</h3>
+<p>Working out what to do with a list of differentially expressed genes is often the most difficult aspect of an RNAseq experiment.  One simple thing is to do GO analysis with websites such as <em>GOrilla</em>   <a href="http://cbl-gorilla.cs.technion.ac.il" target=_blank >[http://cbl-gorilla.cs.technion.ac.il]</a> or <em>AgriGO</em> <a href="http://bioinfo.cau.edu.cn/agriGO/index.php" target=_blank >[http://bioinfo.cau.edu.cn/agriGO/index.php]</a>.  We will use <em>GOrilla</em> for this tutorial, but the only plant option is arabidopsis.  Try <em>AgriGO</em> for many other plants.</p>
+<p>First you will need to download your list of FDR ordered list of genes from <em>degust</em>.  The input for GOrilla is a ranked list, not just the FDR &lt; 0.05 genes, so download all genes.  This <em>.csv</em> file can then be opened up in excel and copy and paste the <em>AT</em> gene names into gorilla to get a basic GO enrichment analysis.</p>
+<p><strong>Note:</strong> These GO term analyses can be very useful, but also have their limitations</p>
+<h3 id="venn-diagrams">Venn diagrams</h3>
+<p>Analysis using Venn diagrams is often a powerful way to do list comparisons. Download lists of differentially expressed genes from pairwise interactions.  Use edgeR for this exercise.  <br/>
+1. WT_C v WT_D<br/>
+2. WT_C v MUT_C<br/>
+3. WT_C v MUT_D<br/></p>
+<p>These gene lists can then be pasted into the <em>BioVenn</em> webpage for further analysis. <a href="http://www.cmbi.ru.nl/cdd/biovenn/ " target=_blank >[http://www.cmbi.ru.nl/cdd/biovenn/]</a>.  You can ask questions like, <em>“what genes that are differentially expressed in WT_C v WT_D are already differentially expressed in MUT_C?”</em> </p>
+<p><strong>Note:</strong>  It is often important to separate gene list analysis into upregulated genes and downregulated genes, not just a list of differentially expressed genes.   Also, each analysis will require different condition comparisons depending on the experimental design and biological questions.</p>
 <h2 id="day-two">Day two</h2>
 <h2 id="7-transcriptome-assembly">7. Transcriptome Assembly</h2>
 <p>When a reference genome is not available, then assembling the reads using programs such as <em>trinity</em> is the typical route of analysis.<br/>
