@@ -186,7 +186,7 @@
 <h2 id="1-background">1. Background</h2>
 <p>This Workshop is designed to be run over one and a half days.  No prior bioinformatics or unix knowledge is required.</p>
 <h3 id="intro-to-sequencing-where-does-the-data-come-from">Intro to Sequencing - where does the data come from</h3>
-<p>The workshop will start lecture overview of where the data comes from, (Illumina technologies) and what types of transcriptomics experiments can be performed.</p>
+<p>The workshop will start lecture overview of where the data comes from, (Illumina technologies) and what types of transcriptomics experiments can be performed. See the <a href="assets/LTU_transcriptomics_workshop_2015.pdf" target=_blank >slides</a></p>
 <h3 id="your-computer">Your Computer</h3>
 <p>The following programs will need to be installed on your computer to complete this tutorial.  If you are waiting for something to complete, feel free to install these programs ahead of time.</p>
 <h4 id="mac-unix">Mac &amp; Unix</h4>
@@ -286,16 +286,17 @@ the remote computer.</p>
 <h3 id="basic-unix-commands">Basic Unix commands:</h3>
 <ul>
 <li><strong><em>cd</em></strong> - change directory</li>
-<li><strong><em>cp</em></strong> - copy files</li>
 <li><strong><em>ls</em></strong> - list files in a directory</li>
 <li><strong><em>more</em></strong> - look at the contents of a file, <em>space bar</em> to proceed to next page,  <em>q</em> to quit.</li>
 </ul>
 <h3 id="workshop-files">Workshop files</h3>
 <p>The files required for the workshop have already been copied into the training accounts.  Type the following commands</p>
 <pre><code class="sh">ls -l 
+# the -l option gives details about the files, not just their names
 </code></pre>
 
 <p>this gives you a list of the files already in your directory.  We will go through the contents of these files as we proceed through the workshop.</p>
+<p>A tar.gz file containing the <em>fastq</em> and <em>run files</em> is called <em>transcriptome_workshop.tar.gz</em> and can be downloaded here..  </p>
 <h3 id="test-data-set">Test data set</h3>
 <p>This workshop is using real 100 bp single end Illumina HiSeq data for <em>Col-0</em> arabidopsis, but reads are limited to chromosome 1 of the genome to make the data files and computational time more manageable.  The data file <em>chr1.fastq</em> has over 2 million reads.  Typical read count for a basic experiment is 15-20 million reads per sample.</p>
 <h3 id="fastq-file-format">Fastq file format</h3>
@@ -342,6 +343,7 @@ Once you have submitted your job with the <em>sbatch</em> command you can see if
 <p>where XX is replaced with your training account number. <br/></p>
 <p>Alternatively you can type</p>
 <pre><code class="sh">ls -lrt
+# t=time, r=reverse order 
 </code></pre>
 
 <p>You will see a list of files with the most recent at the bottom of the page
@@ -508,23 +510,24 @@ Voom: http://genomebiology.com/2014/15/2/R29, precision weights unlock linear mo
 
 <p>Spend some time interacting with these these pages, exploring what information can be gained from this data.  Look for patterns in the heatmaps, how may these relate to function?</p>
 <h3 id="pathway-analysis">Pathway analysis</h3>
-<p>Working out what to do with a list of differentially expressed genes is often the most difficult aspect of an RNAseq experiment.  One simple thing is to do GO analysis with websites such as <em>GOrilla</em>   <a href="http://cbl-gorilla.cs.technion.ac.il" target=_blank >[http://cbl-gorilla.cs.technion.ac.il]</a> or <em>AgriGO</em> <a href="http://bioinfo.cau.edu.cn/agriGO/index.php" target=_blank >[http://bioinfo.cau.edu.cn/agriGO/index.php]</a>.  We will use <em>GOrilla</em> for this tutorial, but the only plant option is arabidopsis.  Try <em>AgriGO</em> for many other plants.</p>
-<p>First you will need to download your list of FDR ordered list of genes from <em>degust</em>.  The input for GOrilla is a ranked list, not just the FDR &lt; 0.05 genes, so download all genes.  This <em>.csv</em> file can then be opened up in excel and copy and paste the <em>AT</em> gene names into gorilla to get a basic GO enrichment analysis.</p>
+<p>Working out what to do with a list of differentially expressed genes is often the most difficult aspect of an RNAseq experiment.  One simple thing is to do gene ontology or GO analysis with websites such as <em>GOrilla</em>   <a href="http://cbl-gorilla.cs.technion.ac.il" target=_blank >[http://cbl-gorilla.cs.technion.ac.il]</a> or <em>AgriGO</em> <a href="http://bioinfo.cau.edu.cn/agriGO/index.php" target=_blank >[http://bioinfo.cau.edu.cn/agriGO/index.php]</a>.  We will use <em>GOrilla</em> for this tutorial, but the only plant option is arabidopsis.  Try <em>AgriGO</em> for many other plants.</p>
+<p>First you will need to download your FDR ordered list of genes from <em>degust</em>.  The input for GOrilla is a ranked list, not just the FDR &lt; 0.05 genes, so download all genes.  This <em>.csv</em> file can then be opened up in excel, then copy and paste the <em>AT</em> gene names into gorilla to get a basic GO enrichment analysis.</p>
 <p><strong>Note:</strong> These GO term analyses can be very useful, but also have their limitations</p>
 <h3 id="venn-diagrams">Venn diagrams</h3>
 <p>Analysis using Venn diagrams is often a powerful way to do list comparisons. Download lists of differentially expressed genes from pairwise interactions.  Use edgeR for this exercise.  <br/>
 1. WT_C v WT_D<br/>
 2. WT_C v MUT_C<br/>
 3. WT_C v MUT_D<br/></p>
-<p>These gene lists can then be pasted into the <em>BioVenn</em> webpage for further analysis. <a href="http://www.cmbi.ru.nl/cdd/biovenn/ " target=_blank >[http://www.cmbi.ru.nl/cdd/biovenn/]</a>.  You can ask questions like, <em>“what genes that are differentially expressed in WT_C v WT_D are already differentially expressed in MUT_C?”</em> </p>
-<p><strong>Note:</strong>  It is often important to separate gene list analysis into upregulated genes and downregulated genes, not just a list of differentially expressed genes.   Also, each analysis will require different condition comparisons depending on the experimental design and biological questions.</p>
+<p>These gene lists can then be pasted into the <em>BioVenn</em> webpage for further analysis. <a href="http://www.cmbi.ru.nl/cdd/biovenn/ " target=_blank >[http://www.cmbi.ru.nl/cdd/biovenn/]</a>.  You can ask questions like, <i>“what genes that are differentially expressed in <em>WT_C v WT_D</em> are already differentially expressed in <em>MUT_C v MUT_C</em>?”</i> </p>
+<div class="info"><p><b>Note:</b>  It is often important to separate gene list analysis into upregulated genes and downregulated genes, not just a list of differentially expressed genes.   Also, each analysis will require different condition comparisons depending on the experimental design and biological questions. </div>
+
 <h2 id="day-two">Day two</h2>
 <h2 id="7-transcriptome-assembly">7. Transcriptome Assembly</h2>
 <p>When a reference genome is not available, then assembling the reads using programs such as <em>trinity</em> is the typical route of analysis.<br/>
  <a href="http://trinityrnaseq.github.io/" target=_blank >[http://trinityrnaseq.github.io/]</a></p>
 <p>This workshop will take the same raw <em>fastq</em> data as was mapped to the genome and assemble it, then analyse some of the transcripts. For the sake of speed, only the first 250 thousand reads are assembled.  These correspond to approximately the first 2.5MB of chromosome 1.</p>
 <p>The first step is to make a file with these reads using the <em>head</em> command.  We take the first million lines as there are four lines per sequence.<br> </p>
-<pre><code class="sh">head -1000000 chr1.fastq&gt; chr1_250K.fastq
+<pre><code class="sh">head -1000000 chr1.fastq &gt; chr1_250K.fastq
 </code></pre>
 
 <p>Look at the <em>run_trinity</em> file and then submit the job:</p>
